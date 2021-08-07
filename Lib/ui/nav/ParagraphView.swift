@@ -1,0 +1,39 @@
+//
+// Created by 强子 on 2021/8/7.
+//
+
+
+import SwiftUI
+
+
+struct ParagraphView: View {
+
+    var content: String
+    var lineHeight: Int = 0
+
+    init(_ content: String, style: LineSize = .base) {
+        self.content = content
+        self.lineHeight = style.rawValue
+    }
+
+    static func compress(_ content: String) -> ParagraphView {
+        ParagraphView(content, style: .compress)
+    }
+
+    static func large(_ content: String) -> ParagraphView {
+        ParagraphView(content, style: .large)
+    }
+
+    var body: some View {
+        HStack{
+            Text(content).fontSize(14).lineSpacing(self.lineHeight.toFloat())
+            Spacer(minLength: 0)
+        }.padding(.horizontal).padding(.vertical, self.lineHeight.toFloat())
+    }
+}
+
+enum LineSize: Int {
+    case compress = 10
+    case base = 16
+    case large = 20
+}
