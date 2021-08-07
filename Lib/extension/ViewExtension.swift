@@ -8,7 +8,7 @@ import SwiftUI
 
 extension Text{
 
-    func hint() -> some View{
+    public func hint() -> some View{
         self.font(.system(size: 12)).third()
     }
 
