@@ -36,7 +36,7 @@ struct SlideRow<Content:View>: View {
 
 
         if(self.beginX != 0 && self.id != self.activeId){
-            TimerUtil.async {
+            MyTimerUtil.async {
                 self.hide()
             }
         }
@@ -71,8 +71,8 @@ struct SlideRow<Content:View>: View {
                         let absY = gapY.toAbs()
 
                         let newX = self.beginX + gapX
-                        if(newX < 0 && newX > -UIUtils.fullWidth() * 2 / 3 && absX > 20){
-                            TimerUtil.async {
+                        if(newX < 0 && newX > -MyUIUtil.fullWidth() * 2 / 3 && absX > 20){
+                            MyTimerUtil.async {
                                 self.activeId = self.id
                                 self.scrollX = newX
                             }
@@ -103,7 +103,7 @@ struct SlideRow<Content:View>: View {
     }
 
     func hide(){
-        TimerUtil.async {
+        MyTimerUtil.async {
             self.scrollX = 0
             self.beginX = 0
             self.isDelete = false
@@ -111,7 +111,7 @@ struct SlideRow<Content:View>: View {
         }
     }
     func show(){
-        TimerUtil.async {
+        MyTimerUtil.async {
             self.scrollX = -sizeW
             self.beginX = -sizeW
         }

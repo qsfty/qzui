@@ -28,7 +28,7 @@ struct BigHeaderView:View {
                 Spacer()
             }.height(50)
         }.padding(.horizontal, 20)
-                .padding(.top, UIUtils.getStatusBarHeight())
+                .padding(.top, MyUIUtil.getStatusBarHeight())
                 .mainBg0()
     }
 
@@ -49,7 +49,7 @@ struct HeaderView: View {
             Text(self.title).bold().opacity(self.showTitle ? 1: 0).animate()
             Spacer()
             FixLeftLink(action: nil)
-        }.height(50).padding(.top, UIUtils.getStatusBarHeight()).mainBg().zIndex(10)
+        }.height(50).padding(.top, MyUIUtil.getStatusBarHeight()).mainBg().zIndex(10)
     }
 }
 
@@ -70,7 +70,7 @@ struct FullHeaderView: View {
             Text(self.title).bold().opacity(self.showTitle ? 1: 0)
             Spacer()
             FixRightLink(label: rightText, action: rightAction)
-        }.height(50).padding(.top, UIUtils.getStatusBarHeight()).mainBg().zIndex(10)
+        }.height(50).padding(.top, MyUIUtil.getStatusBarHeight()).mainBg().zIndex(10)
     }
 }
 
@@ -92,7 +92,7 @@ struct HeaderWithRightView: View {
             Text(self.title).bold().opacity(self.showTitle ? 1: 0).animate()
             Spacer()
             FixRightLink(label: rightText, action: rightAction)
-        }.height(50).padding(.top, UIUtils.getStatusBarHeight()).mainBg().zIndex(10)
+        }.height(50).padding(.top, MyUIUtil.getStatusBarHeight()).mainBg().zIndex(10)
     }
 }
 
@@ -170,7 +170,7 @@ struct FixRightLink: View {
 struct FixRightIconLink: View {
 
     var icon: String
-    var iconColor: Color = Color.themeFg
+    var iconColor: Color
     var action: (() -> Void)?
     var body: some View {
         HStack{
@@ -196,10 +196,10 @@ struct HeaderWithEditView: View {
             Spacer()
             Text(self.title).bold().opacity(self.showTitle ? 1: 0).animate()
             Spacer()
-            Text(editing ? "退出" : "编辑").fontSize(16).bold().color(Color.themeBg).tap {
+            Text(editing ? "退出" : "编辑").fontSize(16).bold().tap {
                 self.editing.toggle()
             }.width(50).padding(.vertical).padding(.trailing, 8)
-        }.height(50).padding(.top, UIUtils.getStatusBarHeight()).mainBg0()
+        }.height(50).padding(.top, MyUIUtil.getStatusBarHeight()).mainBg0()
     }
 }
 
@@ -216,11 +216,11 @@ struct HeaderWithCompleteView: View {
             Spacer()
             Text(self.title).bold().opacity(self.showTitle ? 1 : 0).primary().lineLimit(1).animate()
             Spacer()
-            Text("完成").fontSize(16).bold().color(Color.themeBg).tap {
+            Text("完成").fontSize(16).bold().tap {
                 self.completeAction()
             }.width(50).padding(.vertical).padding(.trailing, 8)
 
-        }.height(50).padding(.top, UIUtils.getStatusBarHeight()).mainBg()
+        }.height(50).padding(.top, MyUIUtil.getStatusBarHeight()).mainBg()
     }
 }
 
@@ -233,7 +233,7 @@ struct HeaderWithRightIconView: View {
     var backAction: (() -> Void)? = nil
 
     var rightIcon: String
-    var rightIconColor: Color = Color.themeFg
+    var rightIconColor: Color
     var rightAction: (() -> Void)? = nil
 
     var body: some View {
@@ -247,7 +247,7 @@ struct HeaderWithRightIconView: View {
 
             FixRightIconLink(icon: rightIcon, iconColor: rightIconColor, action: rightAction)
 
-        }.height(50).padding(.top, UIUtils.getStatusBarHeight()).mainBg()
+        }.height(50).padding(.top, MyUIUtil.getStatusBarHeight()).mainBg()
     }
 }
 
@@ -257,7 +257,7 @@ struct HeaderLeadingTitleWithRightIconView: View {
     var title: String
 
     var rightIcon: String
-    var rightIconColor: Color = Color.themeFg
+    var rightIconColor: Color
     var rightAction: (() -> Void)? = nil
 
     var body: some View {
@@ -265,7 +265,7 @@ struct HeaderLeadingTitleWithRightIconView: View {
             FixLeftText(label: self.title)
             Spacer()
             FixRightIconLink(icon: rightIcon, iconColor: rightIconColor, action: rightAction)
-        }.height(50).padding(.top, UIUtils.getStatusBarHeight()).mainBg()
+        }.height(50).padding(.top, MyUIUtil.getStatusBarHeight()).mainBg()
     }
 }
 

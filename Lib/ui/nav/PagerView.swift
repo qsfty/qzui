@@ -11,7 +11,7 @@ struct PagerView<Content:View>: View {
 
     var pages: Int
     @Binding var currentPage: Int
-    var width: CGFloat = UIUtils.fullWidth()
+    var width: CGFloat = MyUIUtil.fullWidth()
     var content: Content
 
     var onPageChanged: ((Int) -> Void)? = nil
@@ -67,7 +67,7 @@ struct PagerView<Content:View>: View {
                         }).animation(inited ? .linear(duration: 0.2) : nil)
                 .offset(x: self.isDragging ? self.scrollX: -self.currentPage.toFloat() * self.width)
                 .onAppear{
-                    TimerUtil.sleep1 {
+                    MyTimerUtil.sleep1 {
                         self.inited = true
                     }
                 }

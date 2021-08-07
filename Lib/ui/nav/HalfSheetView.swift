@@ -72,18 +72,18 @@ struct HalfSheetView<Content: View>: View {
                             .mainBg()
                             .simultaneousGesture(DragGesture(minimumDistance: 0).onChanged{value in
                                 if(value.translation.height > 0){
-                                    TimerUtil.async {
+                                    MyTimerUtil.async {
                                         self.moveOffset = value.translation.height * 2
                                         self.lastOffset = self.moveOffset
                                     }
                                 }
                             }.onEnded{ value in
-                                TimerUtil.async {
+                                MyTimerUtil.async {
                                     if(self.lastOffset > 50){
-                                        TimerUtil.animation{
+                                        MyTimerUtil.animation{
                                             self.shown.toggle()
                                         }
-                                        TimerUtil.async {
+                                        MyTimerUtil.async {
                                             self.moveOffset = 0
                                             self.lastOffset = 0
                                         }
@@ -96,10 +96,10 @@ struct HalfSheetView<Content: View>: View {
                             })
                     ScrollView{
                         content
-                    }.padding(.bottom, UIUtils.getTabbarHeight())
+                    }.padding(.bottom, MyUIUtil.getTabbarHeight())
                     Spacer()
                 }
-                        .mainBg().cornerRadius(10).offset(y: self.shown ? (restDialogHeight() + self.moveOffset) : UIUtils.fullHeight())
+                        .mainBg().cornerRadius(10).offset(y: self.shown ? (restDialogHeight() + self.moveOffset) : MyUIUtil.fullHeight())
                         .animate().zIndex(100)
             }
         }

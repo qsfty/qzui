@@ -17,6 +17,9 @@ extension Int {
     func toFixed(_ len: Int) -> Double {
         (self.toDouble() * pow(10, len.toDouble())).rounded() / pow(10, len.toDouble())
     }
+    func toAbs() -> Int {
+        Int(abs(self))
+    }
 }
 
 extension CGFloat {
@@ -31,6 +34,10 @@ extension CGFloat {
 
     func toFixed(_ len: Int) -> Double {
         (self.toDouble() * pow(10, len.toDouble())).rounded() / pow(10, len.toDouble())
+    }
+
+    func toAbs() -> Int {
+        Int(abs(self))
     }
 }
 
@@ -49,6 +56,10 @@ extension Double {
 
     func toFixed(_ len: Int) -> Double {
         (self * pow(10, len.toDouble())).rounded() / pow(10, len.toDouble())
+    }
+
+    func toAbs() -> Int {
+        Int(abs(self))
     }
 }
 

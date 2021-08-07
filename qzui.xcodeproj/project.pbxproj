@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		125770039AF7AED3E6B1AA4D /* MyCacheUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125779D2C6EE527B7CF522AA /* MyCacheUtil.swift */; };
 		1257703DC735B92F0BB10798 /* NetworkErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1257763CC350679BA46BE837 /* NetworkErrorView.swift */; };
 		125770B6680ACCE62DFF11B9 /* NavigationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125773B8869AE45C5527F40C /* NavigationExtension.swift */; };
 		12577107D165EF1E8E82381F /* SelectDO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125778285980642E8C189138 /* SelectDO.swift */; };
@@ -33,11 +34,14 @@
 		12577AB7D1C8D4BC35C26A4A /* ColorSchemeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12577A0E5657B77F64990681 /* ColorSchemeModifier.swift */; };
 		12577ACDAF913C152836401D /* ToastDO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125773B0B871A3B43739DAFA /* ToastDO.swift */; };
 		12577AEB31E4B41E2EB7E623 /* ParagraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1257789D7D80BDD1D0CF8400 /* ParagraphView.swift */; };
+		12577CFC36753147DE15031E /* RegistCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125775E8891B2AE83DC3D540 /* RegistCache.swift */; };
 		12577D28D30D2C49E3C5F56A /* MyEnvUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1257714CA79CC265399AC37E /* MyEnvUtil.swift */; };
 		12577D553512035FD5B9D702 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1257764A4C060FF8535E618A /* KeyboardView.swift */; };
 		12577DCE6F830C7FF18CBD35 /* OkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12577B8EFD12D1B02623B287 /* OkButton.swift */; };
 		12577DF1D783DB6C9E5D7E55 /* LoadingBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12577195E262028F7B3D9E7C /* LoadingBarView.swift */; };
+		12577EA6CC04EF5007D4673B /* MyRequestUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125773D3F96852A4D414C780 /* MyRequestUtil.swift */; };
 		12577F2B2BC77B82FAB39DF8 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125775E1A25CC7FC40E4C852 /* TitleView.swift */; };
+		12577FC306B575E318ADAD22 /* MyJsonUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12577880E8F9433862B5D33B /* MyJsonUtil.swift */; };
 		C713F8D026BEA1C4000BF20C /* qzuiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C713F8CF26BEA1C4000BF20C /* qzuiApp.swift */; };
 		C713F8D226BEA1C4000BF20C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C713F8D126BEA1C4000BF20C /* ContentView.swift */; };
 		C713F8D426BEA1C5000BF20C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C713F8D326BEA1C5000BF20C /* Assets.xcassets */; };
@@ -66,19 +70,23 @@
 		12577195E262028F7B3D9E7C /* LoadingBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingBarView.swift; sourceTree = "<group>"; };
 		125773B0B871A3B43739DAFA /* ToastDO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastDO.swift; sourceTree = "<group>"; };
 		125773B8869AE45C5527F40C /* NavigationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationExtension.swift; sourceTree = "<group>"; };
+		125773D3F96852A4D414C780 /* MyRequestUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRequestUtil.swift; sourceTree = "<group>"; };
 		1257748C31F4CD24F56E5FFB /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		1257748F6A8EE3744A4FB443 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		1257759D9F3B5987BCA928B0 /* InputItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputItem.swift; sourceTree = "<group>"; };
 		125775E1A25CC7FC40E4C852 /* TitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
+		125775E8891B2AE83DC3D540 /* RegistCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistCache.swift; sourceTree = "<group>"; };
 		1257763CC350679BA46BE837 /* NetworkErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkErrorView.swift; sourceTree = "<group>"; };
 		1257764A4C060FF8535E618A /* KeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		1257767AAFE2F13FC39D63F6 /* BoxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxView.swift; sourceTree = "<group>"; };
 		1257774D4A5ACB007DC4062C /* ToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		125778285980642E8C189138 /* SelectDO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectDO.swift; sourceTree = "<group>"; };
+		12577880E8F9433862B5D33B /* MyJsonUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyJsonUtil.swift; sourceTree = "<group>"; };
 		1257789D7D80BDD1D0CF8400 /* ParagraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParagraphView.swift; sourceTree = "<group>"; };
 		125778AAD1424D9AC4309845 /* PagerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagerView.swift; sourceTree = "<group>"; };
 		125778D79EBD552AB449C0ED /* SlideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideView.swift; sourceTree = "<group>"; };
 		12577916D5B079A3E5042D68 /* HintView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HintView.swift; sourceTree = "<group>"; };
+		125779D2C6EE527B7CF522AA /* MyCacheUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCacheUtil.swift; sourceTree = "<group>"; };
 		12577A0E5657B77F64990681 /* ColorSchemeModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSchemeModifier.swift; sourceTree = "<group>"; };
 		12577B8EFD12D1B02623B287 /* OkButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OkButton.swift; sourceTree = "<group>"; };
 		12577BF316745409B88A63FE /* AppVersionApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppVersionApi.swift; sourceTree = "<group>"; };
@@ -140,6 +148,14 @@
 				12577A0E5657B77F64990681 /* ColorSchemeModifier.swift */,
 			);
 			path = modifier;
+			sourceTree = "<group>";
+		};
+		1257769F623D750E719465A0 /* cache */ = {
+			isa = PBXGroup;
+			children = (
+				125775E8891B2AE83DC3D540 /* RegistCache.swift */,
+			);
+			path = cache;
 			sourceTree = "<group>";
 		};
 		125776C169906A6E2D6105E1 /* form */ = {
@@ -252,6 +268,7 @@
 				C713F8F126BEA1DA000BF20C /* os */,
 				12577CFAE55FA970833FA93C /* model */,
 				125774E61DBC11AC0936705F /* modifier */,
+				1257769F623D750E719465A0 /* cache */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -310,6 +327,9 @@
 				12577C2713FBD210FD98D5EE /* MyTimerUtil.swift */,
 				12577D428A8416736BCE0B30 /* MyUIUtil.swift */,
 				1257714CA79CC265399AC37E /* MyEnvUtil.swift */,
+				125773D3F96852A4D414C780 /* MyRequestUtil.swift */,
+				125779D2C6EE527B7CF522AA /* MyCacheUtil.swift */,
+				12577880E8F9433862B5D33B /* MyJsonUtil.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -489,6 +509,10 @@
 				12577A609823368B664147AE /* ToastView.swift in Sources */,
 				12577ACDAF913C152836401D /* ToastDO.swift in Sources */,
 				12577AB7D1C8D4BC35C26A4A /* ColorSchemeModifier.swift in Sources */,
+				12577EA6CC04EF5007D4673B /* MyRequestUtil.swift in Sources */,
+				12577CFC36753147DE15031E /* RegistCache.swift in Sources */,
+				125770039AF7AED3E6B1AA4D /* MyCacheUtil.swift in Sources */,
+				12577FC306B575E318ADAD22 /* MyJsonUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

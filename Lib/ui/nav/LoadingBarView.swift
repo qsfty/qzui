@@ -10,7 +10,7 @@ import SwiftUI
  */
 struct LoadingBarView: View{
 
-    var width: CGFloat = UIUtils.fullWidth()
+    var width: CGFloat = MyUIUtil.fullWidth()
     @Binding var loading: Bool
     @State var loadingWidth: CGFloat = 0
     @State var loadingStep: CGFloat = 30
@@ -35,9 +35,9 @@ struct LoadingBarView: View{
                 initView()
             }
             else{
-                TimerUtil.async {
+                MyTimerUtil.async {
                     self.loadingWidth = self.width
-                    TimerUtil.after {
+                    MyTimerUtil.after {
                         self.loadingWidth = 0
                     }
                 }
@@ -48,12 +48,12 @@ struct LoadingBarView: View{
     }
 
     func onPageAppear(){
-        RequestUtil.judgeNetwork{ ok in
+        MyRequestUtil.judgeNetwork{ ok in
             if(!ok) {
                 self.loading = false
             }
             else{
-                TimerUtil.schedule(0.1) { timer in
+                MyTimerUtil.schedule(0.1) { timer in
                     if(!self.loading){
                         timer.invalidate()
                         return
@@ -65,7 +65,7 @@ struct LoadingBarView: View{
                     }
                     var w = self.loadingWidth + self.loadingStep
                     if(w > W * 0.98){
-                        RequestUtil.judgeNetwork{ ok in
+                        MyRequestUtil.judgeNetwork{ ok in
                             if(!ok) {
                                 timer.invalidate()
                                 self.loading = false

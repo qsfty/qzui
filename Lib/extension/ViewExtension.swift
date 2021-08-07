@@ -492,3 +492,18 @@ func widgetPs(_ items: Any..., separator: String = " ", terminator: String = "\n
     print("")
     #endif
 }
+
+
+extension View {
+    func animate() -> some View {
+        self.modifier(AnimationModifier())
+    }
+}
+
+struct AnimationModifier: ViewModifier {
+
+    func body(content: Content) -> some View {
+        content.animation(.timingCurve(0.2, 0.8, 0.2, 1, duration: 0.2))
+    }
+
+}

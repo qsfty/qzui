@@ -31,7 +31,7 @@ struct RoundedButton: View {
     }
 
     static func long(_ name: String, action: @escaping () -> ()) -> RoundedButton {
-        RoundedButton(name, width: UIUtils.fullWidth() - 80, height: 40, radius: 20, action: action)
+        RoundedButton(name, width: MyUIUtil.fullWidth() - 80, height: 40, radius: 20, action: action)
     }
     var body: some View {
         Text(self.name)
