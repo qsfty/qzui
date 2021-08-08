@@ -5,17 +5,17 @@
 import SwiftUI
 import UIKit
 
-struct MyDatePicker: UIViewRepresentable {
+public struct MyDatePicker: UIViewRepresentable {
 
     @Binding var selection: Date
     let minuteInterval: Int
     let displayedComponents: DatePickerComponents
 
-    func makeCoordinator() -> Coordinator {
+    public func makeCoordinator() -> Coordinator {
         return Coordinator(self)
     }
 
-    func makeUIView(context: UIViewRepresentableContext<MyDatePicker>) -> UIDatePicker {
+    public func makeUIView(context: UIViewRepresentableContext<MyDatePicker>) -> UIDatePicker {
         let picker = UIDatePicker()
         // listen to changes coming from the date picker, and use them to update the state variable
         picker.addTarget(context.coordinator, action: #selector(Coordinator.dateChanged), for: .valueChanged)
@@ -25,7 +25,7 @@ struct MyDatePicker: UIViewRepresentable {
         return picker
     }
 
-    func updateUIView(_ picker: UIDatePicker, context: UIViewRepresentableContext<MyDatePicker>) {
+    public func updateUIView(_ picker: UIDatePicker, context: UIViewRepresentableContext<MyDatePicker>) {
         picker.date = selection
 
         switch displayedComponents {
@@ -38,8 +38,9 @@ struct MyDatePicker: UIViewRepresentable {
         }
     }
 
-    class Coordinator {
+    public class Coordinator {
         let datePicker: MyDatePicker
+
         init(_ datePicker: MyDatePicker) {
             self.datePicker = datePicker
         }

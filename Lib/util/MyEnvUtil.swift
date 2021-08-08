@@ -46,18 +46,18 @@ class MyEnvUtil {
         UIDevice.current.userInterfaceIdiom == .pad
     }
 
-    static func isIOS14() -> Bool {
+    public static func  isIOS14() -> Bool {
         if #available(iOS 14.0, *) {
             return true
         }
         return false
     }
 
-    static func copy(data: String) {
+    public static func  copy(data: String) {
         UIPasteboard.general.string = data
     }
 
-    static func getClipboardData() -> String {
+    public static func  getClipboardData() -> String {
         UIPasteboard.general.string ?? ""
     }
 }

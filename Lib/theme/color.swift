@@ -5,12 +5,12 @@
 import SwiftUI
 
 
-enum ThemeMode {
+public enum ThemeMode {
     case LIGHT;
     case DARK;
 }
 
-enum ColorMode {
+public enum ColorMode {
 
     case MAIN_COLOR;
     case MAIN_BG;
@@ -20,7 +20,7 @@ enum ColorMode {
 }
 
 
-let colorMap: [ThemeMode:[ColorMode:Color]] = [
+public let colorMap: [ThemeMode:[ColorMode:Color]] = [
     .LIGHT: [
         .MAIN_COLOR: .black,
         .HIGH_LIGHT_COLOR: .blue,
@@ -35,6 +35,6 @@ let colorMap: [ThemeMode:[ColorMode:Color]] = [
     ]
 ]
 
-func trans(color: String) -> Color {
+public func trans(color: String) -> Color {
     Color.blue
 }

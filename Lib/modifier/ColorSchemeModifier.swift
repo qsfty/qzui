@@ -6,10 +6,10 @@
 import SwiftUI
 
 
-struct ColorSchemeModifier: ViewModifier {
+public struct ColorSchemeModifier: ViewModifier {
 
-    var mode: String
-    func body(content: Content) -> some View {
+    public var mode: String
+    public func body(content: Content) -> some View {
         Group {
             if(mode == "dark"){
                 content.preferredColorScheme(ColorScheme.dark)

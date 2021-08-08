@@ -4,29 +4,29 @@
 
 import SwiftUI
 
-struct RegistCache{
+public struct RegistCache{
 
     //是否初始化
-    static let APP_INIT = "appInit"
+    public static let APP_INIT = "appInit"
 
     //注册时间
-    static let REGIST_TIME = "registTime"
+    public static let REGIST_TIME = "registTime"
 
-    static func hasRegist() -> Bool {
+    public static func hasRegist() -> Bool {
         return MyCacheUtil.getInt(REGIST_TIME) != 0
     }
 
-    static func getRegistDay() -> Int {
+    public static func getRegistDay() -> Int {
         let registTime = MyCacheUtil.getInt(REGIST_TIME)
         let now = MyDateUtil.getCurrentTimeStamp()
         return Int(floor((now - registTime).toDouble() / 24.0 / 3600.0))
     }
 
-    static func regist() {
+    public static func regist() {
         MyCacheUtil.setInt(REGIST_TIME, value: MyDateUtil.getCurrentTimeStamp())
     }
 
-    static func tryRegist(){
+    public static func tryRegist(){
         if(hasRegist()){
             return
         }

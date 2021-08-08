@@ -4,12 +4,12 @@
 
 import SwiftUI
 
-struct KeyboardListenView: View {
+public struct KeyboardListenView: View {
 
     var up: ((_ height: CGFloat) -> Void)?
     var down: (() -> Void)?
 
-    var body: some View {
+     public var body: some View {
         Text("").onAppear{
             NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: OperationQueue.current) { (noti) in
                 let value = noti.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! CGRect

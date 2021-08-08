@@ -5,10 +5,10 @@
 import Foundation
 
 
-struct FileUtil {
+public struct FileUtil {
 
     //创建文件夹
-    static func mkdir(dir: URL) -> Bool{
+    public static func  mkdir(dir: URL) -> Bool{
         do {
             try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
             return true
@@ -18,7 +18,7 @@ struct FileUtil {
         }
     }
 
-    static func touch(file: URL) -> Bool{
+    public static func  touch(file: URL) -> Bool{
         do {
             return try FileManager.default.createFile(atPath: file.path, contents: nil)
         } catch let error as NSError {
@@ -27,7 +27,7 @@ struct FileUtil {
         }
     }
 
-    static func write(file: URL, data: String) -> Bool{
+    public static func  write(file: URL, data: String) -> Bool{
         do {
             try data.write(to: file, atomically: false, encoding: .utf8)
             return true
@@ -37,7 +37,7 @@ struct FileUtil {
         }
     }
 
-    static func append(file: URL, data: String) -> Bool{
+    public static func  append(file: URL, data: String) -> Bool{
         do {
             try data.data(using: .utf8)?.append(to: file)
             return true
@@ -47,12 +47,12 @@ struct FileUtil {
         }
     }
 
-    static func appendLine(file: URL, data: String) -> Bool{
+    public static func  appendLine(file: URL, data: String) -> Bool{
         append(file: file, data: data.appending("\n"))
     }
 
 
-    static func listDir(dir: URL) -> [URL] {
+    public static func  listDir(dir: URL) -> [URL] {
         do {
             return try FileManager.default.contentsOfDirectory(at: dir, includingPropertiesForKeys: [.fileSizeKey])
         }
@@ -62,7 +62,7 @@ struct FileUtil {
         return []
     }
 
-    static func listDir2(dir: URL) -> [String] {
+    public static func  listDir2(dir: URL) -> [String] {
         do {
             return try FileManager.default.contentsOfDirectory(atPath: dir.path)
         }
@@ -72,11 +72,11 @@ struct FileUtil {
         return []
     }
 
-    static func newPath(parent: URL, path: String) -> URL{
+    public static func  newPath(parent: URL, path: String) -> URL{
         parent.appendingPathComponent(path)
     }
 
-    static func deleteFile(file: URL) -> Bool {
+    public static func  deleteFile(file: URL) -> Bool {
         do {
             //判断，如果是目录，不允许删除
             var directoryExists = ObjCBool.init(false)
@@ -96,7 +96,7 @@ struct FileUtil {
         return false
     }
 
-    static func forceDelete(file: URL) -> Bool {
+    public static func  forceDelete(file: URL) -> Bool {
         do {
             //判断，如果是目录，不允许删除
             if(FileManager.default.fileExists(atPath: file.path)) {
@@ -111,7 +111,7 @@ struct FileUtil {
         return false
     }
 
-    static func getFileDetail(file: URL) -> FileMeta?{
+    public static func  getFileDetail(file: URL) -> FileMeta?{
         do {
             let attrs = try FileManager.default.attributesOfItem(atPath: file.path)
             let dict = attrs as NSDictionary
@@ -130,7 +130,7 @@ struct FileUtil {
     }
 }
 
-struct FileMeta {
+public struct FileMeta {
 
     var name: String
     var size: UInt64

@@ -6,12 +6,12 @@ import SwiftUI
 
 
 
-struct ItemImageView: View {
+public struct ItemImageView: View {
     var icon: String
     var iconColor: Color
     var label: String
 
-    var body: some View {
+     public var body: some View {
         HStack{
             if(icon != "" && iconColor != Color.clear){
                 Image(systemName: icon).font(.system(size: 16)).color(iconColor).width(30)
@@ -22,9 +22,9 @@ struct ItemImageView: View {
 
 }
 
-struct InputItemView: View, Equatable {
+public struct InputItemView: View, Equatable {
 
-    static func == (lhs: InputItemView, rhs: InputItemView) -> Bool {
+    public static func  == (lhs: InputItemView, rhs: InputItemView) -> Bool {
         lhs.value == rhs.value
     }
 
@@ -35,7 +35,7 @@ struct InputItemView: View, Equatable {
     var keyboardType: UIKeyboardType = .default
     var focusAction: ((Bool) -> Void)? = nil
 
-    var body: some View {
+     public var body: some View {
         VStack(spacing: 10){
             HStack{
                 ItemImageView(icon: icon, iconColor: iconColor, label: self.label).tap0{
@@ -53,9 +53,9 @@ struct InputItemView: View, Equatable {
 
 
 
-struct InputItem2View: View,Equatable {
+public struct InputItem2View: View,Equatable {
 
-    static func == (lhs: InputItem2View, rhs: InputItem2View) -> Bool {
+    public static func  == (lhs: InputItem2View, rhs: InputItem2View) -> Bool {
         lhs.value == rhs.value
     }
 
@@ -67,7 +67,7 @@ struct InputItem2View: View,Equatable {
 
     var focusAction: ((Bool) -> Void)? = nil
 
-    var body: some View {
+     public var body: some View {
         VStack(spacing: 10){
             HStack{
                 ItemImageView(icon: icon, iconColor: iconColor, label: self.label)
@@ -78,8 +78,8 @@ struct InputItem2View: View,Equatable {
 }
 
 
-struct SelectItemView: View, Equatable {
-    static func ==(lhs: SelectItemView, rhs: SelectItemView) -> Bool {
+public struct SelectItemView: View, Equatable {
+    public static func  ==(lhs: SelectItemView, rhs: SelectItemView) -> Bool {
         lhs._id == rhs._id && lhs.options == rhs.options
     }
 
@@ -97,7 +97,7 @@ struct SelectItemView: View, Equatable {
         _value.wrappedValue
     }
 
-    var body: some View {
+     public var body: some View {
         return VStack(spacing: 10){
             HStack{
                 ItemImageView(icon: icon, iconColor: iconColor, label: self.label)
@@ -154,9 +154,9 @@ struct SelectItemView: View, Equatable {
 }
 
 
-struct ColorSelectItemView: View, Equatable {
+public struct ColorSelectItemView: View, Equatable {
 
-    static func == (lhs: ColorSelectItemView, rhs: ColorSelectItemView) -> Bool {
+    public static func  == (lhs: ColorSelectItemView, rhs: ColorSelectItemView) -> Bool {
         lhs.value == rhs.value
     }
 
@@ -171,7 +171,7 @@ struct ColorSelectItemView: View, Equatable {
 
     @State var chooseColor: Color = Color.clear
 
-    var body: some View {
+     public var body: some View {
         VStack(spacing: 0){
             HStack{
                 ItemImageView(icon: icon, iconColor: iconColor, label: self.label)
@@ -191,7 +191,7 @@ struct ColorSelectItemView: View, Equatable {
 }
 
 
-struct SelectTimeRangeItemView: View {
+public struct SelectTimeRangeItemView: View {
 
     var icon: String = ""
     var iconColor: Color = Color.clear
@@ -207,7 +207,7 @@ struct SelectTimeRangeItemView: View {
     @State var gmtEnd: Date = Date.init()
 
 
-    var body: some View {
+     public var body: some View {
         ZStack(alignment: .top){
             HStack{
                 ItemImageView(icon: icon, iconColor: iconColor, label: self.label)
@@ -259,16 +259,16 @@ struct SelectTimeRangeItemView: View {
 
 
 
-struct DatePickerItemView: View {
+public struct DatePickerItemView: View {
 
-    var icon: String
-    var iconColor: Color
-    var label: String
-    @Binding var date: Date
-    var action: () -> Void
+        public var icon: String
+        public var iconColor: Color
+        public var label: String
+    @Binding public var date: Date
+    public var action: () -> Void
 
 
-    var body: some View {
+        public var body: some View {
         VStack(spacing: 10){
             DatePicker(selection: $date, displayedComponents: [.hourAndMinute, .date]){
                 HStack{
@@ -289,14 +289,14 @@ struct DatePickerItemView: View {
 
 
 
-struct SetItemView: View {
+public struct SetItemView: View {
 
-    var icon: String = ""
-    var iconColor: Color = Color.clear
-    var label: String
-    var action: () -> Void
+        public var icon: String = ""
+    public  var iconColor: Color = Color.clear
+    public var label: String
+    public var action: () -> Void
 
-    var body: some View {
+    public var body: some View {
 
         HStack{
             ItemImageView(icon: icon, iconColor: iconColor, label: self.label)
@@ -309,14 +309,14 @@ struct SetItemView: View {
     }
 }
 
-struct RateItemView: View {
+public struct RateItemView: View {
 
-    var appId = ""
-    var effectDate = ""
-    var showIcon: Bool = false
-    @State var text = "评价APP"
+        public var appId = ""
+    public  var effectDate = ""
+    public  var showIcon: Bool = false
+    @State public var text = "评价APP"
 
-    var body: some View {
+    public var body: some View {
         SetItemView(icon: "star.fill", iconColor: showIcon ? Color.red: Color.clear, label: self.text) {
             let urlString = "itms-apps://itunes.apple.com/cn/app/\(appId)?mt=8&action=write-review"
             UIApplication.shared.open(URL(string: urlString)!)
@@ -328,13 +328,13 @@ struct RateItemView: View {
     }
 }
 
-struct UpgradeItemView: View {
+public struct UpgradeItemView: View {
 
     var bundle = ""
     var appId = ""
     @State var latestVersion = AppVersion(version: "0.0.1")
 
-    var body: some View {
+     public var body: some View {
 
         Group {
             if(latestVersion.largeThan(other: AppVersionApi.getCurrentVersion())){
@@ -362,9 +362,9 @@ struct UpgradeItemView: View {
 
 
 
-struct SwitchSetItemView : View, Equatable {
+public struct SwitchSetItemView : View, Equatable {
 
-    static func == (lhs: SwitchSetItemView, rhs: SwitchSetItemView) -> Bool {
+    public static func  == (lhs: SwitchSetItemView, rhs: SwitchSetItemView) -> Bool {
         lhs._value.wrappedValue == rhs._value.wrappedValue
     }
 
@@ -373,7 +373,7 @@ struct SwitchSetItemView : View, Equatable {
     var label: String
     @Binding var value: Bool
 
-    var body: some View {
+     public var body: some View {
         return HStack{
             ItemImageView(icon: icon, iconColor: iconColor, label: label)
             Spacer()
@@ -384,9 +384,9 @@ struct SwitchSetItemView : View, Equatable {
 }
 
 
-struct SwitchActionSetItemView : View, Equatable {
+public struct SwitchActionSetItemView : View, Equatable {
 
-    static func == (lhs: SwitchActionSetItemView, rhs: SwitchActionSetItemView) -> Bool {
+    public static func  == (lhs: SwitchActionSetItemView, rhs: SwitchActionSetItemView) -> Bool {
         lhs.value == rhs.value
     }
 
@@ -396,7 +396,7 @@ struct SwitchActionSetItemView : View, Equatable {
     var value: Bool
     var action: () -> Void
 
-    var body: some View {
+     public var body: some View {
 
         HStack{
             ItemImageView(icon: icon, iconColor: iconColor, label: label)
@@ -411,7 +411,7 @@ struct SwitchActionSetItemView : View, Equatable {
 
 
 
-struct LinkSetItemView<Destination: View> : View {
+public struct LinkSetItemView<Destination: View> : View {
 
     var icon: String = ""
     var iconColor: Color = Color.clear
@@ -421,7 +421,7 @@ struct LinkSetItemView<Destination: View> : View {
     @State var isActive: Bool = false
 
 
-    var body: some View {
+     public var body: some View {
 
         VStack{
             HStack{

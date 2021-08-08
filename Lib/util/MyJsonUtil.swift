@@ -8,11 +8,11 @@ import CleanJSON
 
 class MyJsonUtil {
 
-    static func print<T: Codable>(data: T){
+    public static func  print<T: Codable>(data: T){
         ps(stringify(data: data))
     }
 
-    static func stringify<T: Codable>(data: T) -> String{
+    public static func  stringify<T: Codable>(data: T) -> String{
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(data) {
             // save `encoded` somewhere
@@ -23,12 +23,12 @@ class MyJsonUtil {
         return ""
     }
 
-    static func parseObject<T: Codable>(data: String) -> T?{
+    public static func  parseObject<T: Codable>(data: String) -> T?{
         let decoder = CleanJSONDecoder()
         return try? decoder.decode(T.self, from: data.data(using: .utf8)!)
     }
 
-    static func parseArray<T: Codable>(data: String) -> [T]{
+    public static func  parseArray<T: Codable>(data: String) -> [T]{
         let decoder = CleanJSONDecoder()
         return (try? decoder.decode([T].self, from: data.data(using: .utf8)!)) ?? []
     }

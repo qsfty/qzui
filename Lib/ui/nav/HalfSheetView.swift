@@ -12,7 +12,7 @@ import SwiftUI
 /**
  * 半屏弹窗
  */
-struct HalfSheetView<Content: View>: View {
+public struct HalfSheetView<Content: View>: View {
 
     @Binding var shown: Bool
 
@@ -45,7 +45,7 @@ struct HalfSheetView<Content: View>: View {
         self.content = content()
     }
 
-    var body: some View {
+     public var body: some View {
         return VStack{
             ZStack(alignment: .top){
                 LayerView(shown: $shown) {
@@ -117,12 +117,12 @@ struct HalfSheetView<Content: View>: View {
 }
 
 
-struct LayerView: View {
+public struct LayerView: View {
 
     @Binding var shown: Bool
     var action: (() -> Void)?
 
-    var body: some View {
+     public var body: some View {
         Group{
             if(shown){
                 Color.gray.opacity(0.2).zIndex(10).edgesIgnoringSafeArea(.all).tap0{

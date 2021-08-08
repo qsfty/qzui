@@ -4,6 +4,6 @@
 
 import Foundation
 
-struct MyDataUtil {
+public struct MyDataUtil {
 
 }

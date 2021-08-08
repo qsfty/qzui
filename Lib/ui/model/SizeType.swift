@@ -5,7 +5,7 @@
 import SwiftUI
 
 
-enum SizeType: CGFloat {
+public enum SizeType: CGFloat {
 
     case small = 12
     case normal = 14

@@ -6,7 +6,7 @@
 import SwiftUI
 
 
-struct ParagraphView: View {
+public struct ParagraphView: View {
 
     var content: String
     var lineHeight: Int = 0
@@ -16,15 +16,15 @@ struct ParagraphView: View {
         self.lineHeight = style.rawValue
     }
 
-    static func compress(_ content: String) -> ParagraphView {
+    public static func  compress(_ content: String) -> ParagraphView {
         ParagraphView(content, style: .compress)
     }
 
-    static func large(_ content: String) -> ParagraphView {
+    public static func  large(_ content: String) -> ParagraphView {
         ParagraphView(content, style: .large)
     }
 
-    var body: some View {
+     public var body: some View {
         HStack{
             Text(content).fontSize(14).lineSpacing(self.lineHeight.toFloat())
             Spacer(minLength: 0)

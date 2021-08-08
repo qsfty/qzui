@@ -7,7 +7,7 @@ import SwiftUI
 /**
  * 滑动组件
  */
-struct PagerView<Content:View>: View {
+public struct PagerView<Content:View>: View {
 
     var pages: Int
     @Binding var currentPage: Int
@@ -30,7 +30,7 @@ struct PagerView<Content:View>: View {
 //        self.scrollX = -self.currentPage.toFloat() * self.width
     }
 
-    var body: some View {
+     public var body: some View {
         HStack(alignment: .top, spacing:0){
             self.content
         }.offset(x: (pages - 1).toFloat() * self.width / 2)

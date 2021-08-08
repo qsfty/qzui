@@ -4,14 +4,14 @@
 
 import Foundation
 
-struct ToastDO{
+public struct ToastDO{
 
-    var success: Bool = true
-    var message: String = ""
-    var sheet: Bool = false
-    var show: Bool = false
+    public var success: Bool = true
+    public var message: String = ""
+    public var sheet: Bool = false
+    public var show: Bool = false
 
-    static func success(_ message: String) -> ToastDO{
+    public static func success(_ message: String) -> ToastDO{
         var toastDO = ToastDO()
         toastDO.success = true
         toastDO.show = true
@@ -19,7 +19,7 @@ struct ToastDO{
         return toastDO
     }
 
-    static func error(_ message: String) -> ToastDO{
+    public static func error(_ message: String) -> ToastDO{
         var toastDO = ToastDO()
         toastDO.success = false
         toastDO.show = true
@@ -27,13 +27,13 @@ struct ToastDO{
         return toastDO
     }
 
-    static func sheetSuccess(_ message: String) -> ToastDO{
+    public static func sheetSuccess(_ message: String) -> ToastDO{
         var toastDO = success(message)
         toastDO.sheet = true
         return toastDO
     }
 
-    static func sheetError(_ message: String) -> ToastDO{
+    public static func sheetError(_ message: String) -> ToastDO{
         var toastDO = error(message)
         toastDO.sheet = true
         return toastDO

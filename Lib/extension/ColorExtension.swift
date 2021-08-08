@@ -11,7 +11,7 @@ extension UIColor {
     // Check if the color is light or dark, as defined by the injected lightness threshold.
     // Some people report that 0.7 is best. I suggest to find out for yourself.
     // A nil value is returned if the lightness couldn't be determined.
-    func isLight(threshold: Float = 0.5) -> Bool {
+    public func isLight(threshold: Float = 0.5) -> Bool {
         let originalCGColor = self.cgColor
 
         // Now we need to convert it to the RGB colorspace. UIColor.white / UIColor.black are greyscale and not RGB.
@@ -28,7 +28,7 @@ extension UIColor {
         return (brightness > threshold)
     }
 
-    func hexValue() -> String {
+    public func hexValue() -> String {
         let values = self.cgColor.components
         var outputR: Int = 0
         var outputG: Int = 0
@@ -67,11 +67,11 @@ extension UIColor {
 
 extension Color {
 
-    func uiColor() -> UIColor {
+    public func uiColor() -> UIColor {
         return UIColor(self)
     }
 
-    func stringify() -> String {
+    public func stringify() -> String {
         let v = self.uiColor().hexValue()
         if(String(v.reversed()).starts(with: "FF")){
             return v.slice(begin: 0, end: 2)

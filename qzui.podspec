@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'QzUI'
-  s.version          = '0.0.3'
+  s.version          = '0.0.4'
   s.summary          = 'SwiftUI Helper'
 
   s.description      = <<-DESC

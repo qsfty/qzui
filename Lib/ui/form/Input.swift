@@ -7,14 +7,14 @@ import SwiftUI
 /**
  * 输入框
  */
-struct Input: View {
+public struct Input: View {
 
-    var label: String
+    public var label: String
     @Binding var value: String
     @State var focused: Bool = false
     var onCommit:() -> Void
 
-    var body: some View {
+    public var body: some View {
         ZStack(alignment: Alignment.trailing) {
             TextField(label, text: $value, onEditingChanged: { (editingChanged) in
                 self.focused = editingChanged
@@ -29,16 +29,15 @@ struct Input: View {
     }
 }
 
-struct SearchInput: View {
+public struct SearchInput: View {
 
-    var label: String
-    var width: CGFloat = MyUIUtil.fullWidth() - 60
-    @Binding var value: String
-    @Binding var focus: Bool
-    var action: (String) -> ()
+    public var label: String
+    public var width: CGFloat = MyUIUtil.fullWidth() - 60
+    @Binding public var value: String
+    @Binding public var focus: Bool
+    public var action: (String) -> ()
 
-
-    var body: some View {
+    public var body: some View {
         ZStack(alignment: Alignment.trailing) {
 
             TextField(label, text: $value, onEditingChanged: { (editingChanged) in

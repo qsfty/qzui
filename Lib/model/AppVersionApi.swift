@@ -10,10 +10,10 @@ import Foundation
 import Alamofire
 import CleanJSON
 
-struct AppVersionApi{
+public struct AppVersionApi{
 
 
-    static func getCurrentVersion() -> AppVersion{
+    public static func  getCurrentVersion() -> AppVersion{
         let infoDic = Bundle.main.infoDictionary!
         let  majorVersion: String = infoDic["CFBundleShortVersionString"] as! String
         return AppVersion(version: majorVersion)
@@ -23,7 +23,7 @@ struct AppVersionApi{
         getCurrentVersion().version()
     }
 
-    static func getLatestVersion(bundle: String, cb:@escaping (AppVersion) -> Void) {
+    public static func  getLatestVersion(bundle: String, cb:@escaping (AppVersion) -> Void) {
         var URL: String {
             "https://itunes.apple.com/lookup?bundleId=" + bundle + "&v=\(MyDateUtil.getCurrentMilliTimeStamp())"
         }
@@ -43,7 +43,7 @@ struct AppVersionApi{
     }
 }
 
-struct AppVersion: Codable {
+public struct AppVersion: Codable {
     var majorVersion: Int = 0
     var minorVersion: Int = 0
     var bugVersion: Int = 0
@@ -62,17 +62,17 @@ struct AppVersion: Codable {
         }
     }
 
-    func largeThan(other: AppVersion) -> Bool {
+    public func largeThan(other: AppVersion) -> Bool {
         let v1 = (self.majorVersion * 10000).toFloat() + self.minorVersion.toFloat()  + (self.bugVersion.toDouble() / 10000.0).toFloat()
         let v2 = (other.majorVersion * 10000).toFloat() + other.minorVersion.toFloat() + (other.bugVersion.toDouble() / 10000.0).toFloat()
         return v1 > v2
     }
 
-    func version() -> String {
+    public func version() -> String {
         "v\(self.majorVersion).\(self.minorVersion).\(self.bugVersion)"
     }
 
-    static func compareName(latestVersion: AppVersion) -> String {
+    public static func compareName(latestVersion: AppVersion) -> String {
         if(latestVersion.largeThan(other: AppVersionApi.getCurrentVersion())){
             return "有新版本\(latestVersion.version())"
         }
@@ -81,12 +81,12 @@ struct AppVersion: Codable {
         }
     }
 
-    static func hasNewVersion(latestVersion: AppVersion) -> Bool {
+    public static func hasNewVersion(latestVersion: AppVersion) -> Bool {
         latestVersion.largeThan(other: AppVersionApi.getCurrentVersion())
     }
 }
 
-struct AppVersionResult: Codable {
+public struct AppVersionResult: Codable {
 
     var resultCount: String = ""
     var results: [AppVersionDetail]
@@ -94,7 +94,7 @@ struct AppVersionResult: Codable {
     struct AppVersionDetail: Codable {
         var version: String = ""
 
-        func toAppVersion() -> AppVersion {
+        public func toAppVersion() -> AppVersion {
             AppVersion(version: version)
         }
     }

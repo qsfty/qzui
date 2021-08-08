@@ -5,7 +5,7 @@
 
 import SwiftUI
 
-struct TipView : View {
+public struct TipView : View {
 
     var tip: String
     var always: Bool = false
@@ -14,24 +14,24 @@ struct TipView : View {
 
     @State var show: Bool = false
 
-    static func new(_ tip: String, top: Bool = true) -> TipView {
+    public static func  new(_ tip: String, top: Bool = true) -> TipView {
         TipView(tip: tip, top: top)
     }
 
-    static func new2(_ tip: String, top: Bool = true) -> TipView {
+    public static func  new2(_ tip: String, top: Bool = true) -> TipView {
         TipView(tip: tip, padding: 15, top: top)
     }
 
-    static func tip(_ tip: String, top: Bool = true) -> TipView {
+    public static func  tip(_ tip: String, top: Bool = true) -> TipView {
         TipView(tip: tip, always: true, top: top)
     }
 
-    static func tip2(_ tip: String, top: Bool = true) -> TipView {
+    public static func  tip2(_ tip: String, top: Bool = true) -> TipView {
         TipView(tip: tip, always: true, padding: 15, top: top)
     }
 
 
-    var body: some View {
+     public var body: some View {
 
         HStack(alignment: .top, spacing: 0) {
             if(show){

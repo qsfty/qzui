@@ -11,12 +11,12 @@ import SwiftUI
 /**
  * 输入框
  */
-struct RadioButton: View {
+public struct RadioButton: View {
 
     @Binding var value: Bool
     var action: (Bool) -> Void
 
-    var body: some View {
+    public var body: some View {
         Group{
             if value {
                 Image(systemName: "checkmark.circle").themeColor().emptyBg().onTapGesture {
@@ -33,11 +33,11 @@ struct RadioButton: View {
     }
 }
 
-struct RadioButtonView: View {
+public struct RadioButtonView: View {
 
     var value: Bool
 
-    var body: some View {
+    public var body: some View {
         Group{
             if value {
                 Image(systemName: "checkmark.circle").themeColor()
@@ -50,13 +50,13 @@ struct RadioButtonView: View {
 }
 
 
-struct RadioFillNumberButton: View {
+public struct RadioFillNumberButton: View {
 
     @Binding var value: Int
 
     @State var size: CGFloat = 18
 
-    var body: some View {
+    public var body: some View {
 
         ZStack{
             if(self.value == 0){

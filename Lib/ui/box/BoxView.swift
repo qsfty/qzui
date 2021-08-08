@@ -4,17 +4,13 @@
 
 import SwiftUI
 
-struct BoxView<Content>: View where Content: View{
-
-
-    var content: Content
-
-
-    init(content: () -> Content){
+public struct BoxView<Content>: View where Content: View{
+    public var content: Content
+    public init(content: () -> Content){
         self.content = content()
     }
 
-    var body: some View {
+    public var body: some View {
 
         HStack{
             Spacer()

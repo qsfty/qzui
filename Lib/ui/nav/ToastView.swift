@@ -4,12 +4,12 @@
 
 import SwiftUI
 
-struct ToastView: View {
+public struct ToastView: View {
 
     var sheet: Bool = false
     @Binding var toastInfo: ToastDO
 
-    var body: some View {
+     public var body: some View {
 
         if(!toastInfo.show){
             Color.clear.frame(width: 0,height: 0)

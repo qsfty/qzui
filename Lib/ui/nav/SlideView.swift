@@ -7,7 +7,7 @@ import SwiftUI
 /**
  * 左滑
  */
-struct SlideRow<Content:View>: View {
+public struct SlideRow<Content:View>: View {
 
     var content: Content
 
@@ -32,7 +32,7 @@ struct SlideRow<Content:View>: View {
         self.content = content()
     }
 
-    var body: some View {
+     public var body: some View {
 
 
         if(self.beginX != 0 && self.id != self.activeId){

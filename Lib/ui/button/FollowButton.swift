@@ -4,14 +4,14 @@
 
 import SwiftUI
 
-struct FollowButton : View {
+public struct FollowButton : View {
 
-    var followed: Bool
-    var type: String = "关注"
-    var size: SizeType = .small
-    var action: () -> Void
+    public var followed: Bool
+    public var type: String = "关注"
+    public var size: SizeType = .small
+    public var action: () -> Void
 
-    func horizontalPadding() -> CGFloat {
+    public func horizontalPadding() -> CGFloat {
         switch size {
         case .small:
             return 8.toFloat()
@@ -23,7 +23,7 @@ struct FollowButton : View {
             return 8.toFloat()
         }
     }
-    func verticalPadding() -> CGFloat {
+    public func verticalPadding() -> CGFloat {
         switch size {
         case .small:
             return 5.toFloat()
@@ -36,7 +36,7 @@ struct FollowButton : View {
         }
     }
 
-    var body: some View {
+    public var body: some View {
 
         VStack {
             Text(self.followed ? "取消\(type)" : type)

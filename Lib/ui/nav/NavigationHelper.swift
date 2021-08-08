@@ -11,12 +11,12 @@ import SwiftUI
 /**
  * 没有数据
  */
-struct EmptyView: View {
+public struct EmptyView: View {
 
     var content: String
     var action: (() -> Void)? = nil
 
-    var body: some View {
+     public var body: some View {
 
         VStack {
             Spacer()
@@ -28,12 +28,12 @@ struct EmptyView: View {
     }
 }
 
-struct EmptyLineView: View {
+public struct EmptyLineView: View {
 
     var content: String
     var action: (() -> Void)? = nil
 
-    var body: some View {
+     public var body: some View {
 
         HStack {
             Spacer()
@@ -46,13 +46,13 @@ struct EmptyLineView: View {
 }
 
 
-struct EmptyLinkView<Destination: View>: View {
+public struct EmptyLinkView<Destination: View>: View {
 
     var destination: Destination
 
     @Binding var isActive: Bool
 
-    var body: some View {
+     public var body: some View {
 
         NavigationLink(destination: destination, isActive: $isActive){
             Text("")
@@ -62,8 +62,8 @@ struct EmptyLinkView<Destination: View>: View {
 
 
 
-struct BugFillLinkView: View {
-    var body: some View {
+public struct BugFillLinkView: View {
+     public var body: some View {
         NavigationLink(destination: Text("")){
             Text("")
         }.height(0).width(0)

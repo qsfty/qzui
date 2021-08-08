@@ -8,7 +8,7 @@ import SwiftUI
 /**
  * 横向加载进度条
  */
-struct LoadingBarView: View{
+public struct LoadingBarView: View{
 
     var width: CGFloat = MyUIUtil.fullWidth()
     @Binding var loading: Bool
@@ -23,7 +23,7 @@ struct LoadingBarView: View{
         onPageAppear()
     }
 
-    var body: some View {
+     public var body: some View {
         HStack(spacing:0){
             Rectangle().frame(width: self.loadingWidth, height: 3).animation(self.loading ? .linear: nil).foregroundColor(self.loadingWidth > 0 ? Color("button0") : Color.clear)
             Spacer(minLength: 0)

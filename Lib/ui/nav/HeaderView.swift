@@ -8,7 +8,7 @@ import SwiftUI
 /**
  * 大标题栏
  */
-struct BigHeaderView:View {
+public struct BigHeaderView:View {
 
     var title: String
     var second: Bool
@@ -20,7 +20,7 @@ struct BigHeaderView:View {
         self.hideTitle = hideTitle
     }
 
-    var body: some View {
+     public var body: some View {
         VStack{
             Text(hideTitle).hint().height(50).offset(y: -20)
             HStack{
@@ -37,12 +37,12 @@ struct BigHeaderView:View {
 /**
  * 标题栏
  */
-struct HeaderView: View {
+public struct HeaderView: View {
 
     var title: String
     var showTitle: Bool = true
     var backAction: (() -> Void)? = nil
-    var body: some View {
+     public var body: some View {
         HStack{
             FixLeftLink(action: backAction)
             Spacer()
@@ -54,7 +54,7 @@ struct HeaderView: View {
 }
 
 
-struct FullHeaderView: View {
+public struct FullHeaderView: View {
 
     var title: String
     var showTitle: Bool = false
@@ -63,7 +63,7 @@ struct FullHeaderView: View {
     var rightText: String = ""
     var rightAction: (() -> Void)? = nil
 
-    var body: some View {
+     public var body: some View {
         HStack{
             FixLeftTextLink(label: leftText, action: leftAction)
             Spacer()
@@ -75,7 +75,7 @@ struct FullHeaderView: View {
 }
 
 
-struct HeaderWithRightView: View {
+public struct HeaderWithRightView: View {
 
     var title: String
     var showTitle: Bool
@@ -85,7 +85,7 @@ struct HeaderWithRightView: View {
     var rightText: String
     var rightAction: () -> Void
 
-    var body: some View {
+     public var body: some View {
         HStack{
             FixLeftLink(action: backAction)
             Spacer()
@@ -97,10 +97,10 @@ struct HeaderWithRightView: View {
 }
 
 
-struct FixLeftLink: View {
+public struct FixLeftLink: View {
 
     var action: (() -> Void)? = nil
-    var body: some View {
+     public var body: some View {
         HStack{
             if(action != nil){
                 Image(systemName: "chevron.backward")
@@ -113,11 +113,11 @@ struct FixLeftLink: View {
 }
 
 
-struct FixLeftTextLink: View {
+public struct FixLeftTextLink: View {
 
     var label: String
     var action: (() -> Void)? = nil
-    var body: some View {
+     public var body: some View {
         HStack{
             Text(label).fontSize(16).color("button0").padding(.vertical).tap0{
                 self.action?()
@@ -129,11 +129,11 @@ struct FixLeftTextLink: View {
     }
 }
 
-struct FixLeftText: View {
+public struct FixLeftText: View {
 
     var label: String
     var action: (() -> Void)? = nil
-    var body: some View {
+     public var body: some View {
         HStack{
             Text(label).fontSize(18).bold().primary().padding(.vertical)
             Spacer(minLength: 0)
@@ -144,11 +144,11 @@ struct FixLeftText: View {
 }
 
 
-struct FixRightLink: View {
+public struct FixRightLink: View {
 
     var label: String
     var action: (() -> Void)?
-    var body: some View {
+     public var body: some View {
         HStack{
             Spacer(minLength: 0)
             if(label == "newTask"){
@@ -167,12 +167,12 @@ struct FixRightLink: View {
 }
 
 
-struct FixRightIconLink: View {
+public struct FixRightIconLink: View {
 
     var icon: String
     var iconColor: Color
     var action: (() -> Void)?
-    var body: some View {
+     public var body: some View {
         HStack{
             Spacer(minLength: 0)
             Image(systemName: icon).font(.system(size: 22)).color(iconColor).tap0{
@@ -182,7 +182,7 @@ struct FixRightIconLink: View {
     }
 }
 
-struct HeaderWithEditView: View {
+public struct HeaderWithEditView: View {
 
     var title: String
     var showTitle: Bool
@@ -190,7 +190,7 @@ struct HeaderWithEditView: View {
     var backAction: (() -> Void)? = nil
     @Binding var editing: Bool
 
-    var body: some View {
+     public var body: some View {
         HStack{
             FixLeftLink(action: self.backAction)
             Spacer()
@@ -203,14 +203,14 @@ struct HeaderWithEditView: View {
     }
 }
 
-struct HeaderWithCompleteView: View {
+public struct HeaderWithCompleteView: View {
 
     var title: String
     var showTitle: Bool = true
     var backAction: (() -> Void)? = nil
     var completeAction: () -> Void
 
-    var body: some View {
+     public var body: some View {
         HStack{
             FixLeftLink(action: self.backAction)
             Spacer()
@@ -226,7 +226,7 @@ struct HeaderWithCompleteView: View {
 
 
 
-struct HeaderWithRightIconView: View {
+public struct HeaderWithRightIconView: View {
 
     var title: String
     var backButton: Bool? = false
@@ -236,7 +236,7 @@ struct HeaderWithRightIconView: View {
     var rightIconColor: Color
     var rightAction: (() -> Void)? = nil
 
-    var body: some View {
+     public var body: some View {
         HStack{
             if(self.backButton ?? false){
                 FixLeftLink(action: backAction)
@@ -252,7 +252,7 @@ struct HeaderWithRightIconView: View {
 }
 
 
-struct HeaderLeadingTitleWithRightIconView: View {
+public struct HeaderLeadingTitleWithRightIconView: View {
 
     var title: String
 
@@ -260,7 +260,7 @@ struct HeaderLeadingTitleWithRightIconView: View {
     var rightIconColor: Color
     var rightAction: (() -> Void)? = nil
 
-    var body: some View {
+     public var body: some View {
         HStack{
             FixLeftText(label: self.title)
             Spacer()
@@ -270,14 +270,14 @@ struct HeaderLeadingTitleWithRightIconView: View {
 }
 
 
-struct HeaderImageNavView: View {
+public struct HeaderImageNavView: View {
 
     var systemName: String
 
     var height: CGFloat = 50
     var imageHeight: CGFloat = 28
 
-    var body: some View {
+     public var body: some View {
 
         Image(systemName: systemName).font(.system(size: 20)).primary()
 

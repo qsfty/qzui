@@ -5,20 +5,20 @@
 import Foundation
 
 
-struct SelectDO: Codable, Equatable{
-    static func ==(lhs: SelectDO, rhs: SelectDO) -> Bool {
+public struct SelectDO: Codable, Equatable{
+    public static func ==(lhs: SelectDO, rhs: SelectDO) -> Bool {
         lhs.label == rhs.label && lhs.value == rhs.value
     }
 
-    var label: String
-    var value: String
+    public var label: String
+    public var value: String
 }
 
 
 
 extension SelectDO {
 
-    static func initValues(_ args: String...) -> [SelectDO] {
+    public static func initValues(_ args: String...) -> [SelectDO] {
         var result: [SelectDO] = []
         for i in 0..<args.count / 2 {
             if(i * 2 + 1 < args.count){

@@ -4,7 +4,7 @@
 
 import SwiftUI
 
-struct TitleView: View {
+public struct TitleView: View {
 
     var title: String
 
@@ -12,7 +12,7 @@ struct TitleView: View {
         self.title = title
     }
 
-    var body: some View {
+     public var body: some View {
         HStack{
             Spacer()
             Text(self.title).foregroundColor(Color("primary"))
@@ -22,7 +22,7 @@ struct TitleView: View {
 }
 
 
-struct LeadingTitleView: View {
+public struct LeadingTitleView: View {
 
     var title: String
 
@@ -30,7 +30,7 @@ struct LeadingTitleView: View {
         self.title = title
     }
 
-    var body: some View {
+     public var body: some View {
         HStack{
             Text(self.title).bold().fontSize(16).primary()
             Spacer()
@@ -39,14 +39,14 @@ struct LeadingTitleView: View {
 }
 
 
-struct LeadingTextView: View {
+public struct LeadingTextView: View {
 
     var title: String
     var fontSize: CGFloat = 14
     var color: Color = Color.primary
     var bold: Bool = false
 
-    var body: some View {
+     public var body: some View {
         HStack{
             Text(self.title).fontWeight(bold ? .bold : .none).fontSize(fontSize).color(color)
             Spacer()

@@ -10,7 +10,7 @@ import CleanJSON
 
 class MyRequestUtil {
 
-    static func post<T:Codable>(url: String, params: [String: String], complete: @escaping (T) -> Void) {
+    public static func  post<T:Codable>(url: String, params: [String: String], complete: @escaping (T) -> Void) {
         Alamofire.AF.request(url, method: .post, parameters: params).responseString { response in
             if let data = response.value {
                 let decoder = CleanJSONDecoder()
@@ -23,7 +23,7 @@ class MyRequestUtil {
         }
     }
 
-    static func judgeNetwork(complete: @escaping (Bool) -> Void){
+    public static func  judgeNetwork(complete: @escaping (Bool) -> Void){
         NetworkReachabilityManager(host: "www.baidu.com")?.startListening { status in
             if(status == .notReachable){
                 complete(false)
@@ -34,7 +34,7 @@ class MyRequestUtil {
         }
     }
 
-    static func onNetworkError(complete: @escaping () -> Void){
+    public static func  onNetworkError(complete: @escaping () -> Void){
         judgeNetwork { ok in
             if(!ok){
                 complete()
@@ -42,7 +42,7 @@ class MyRequestUtil {
         }
     }
 
-    static func onNetworkSuccess(complete: @escaping () -> Void){
+    public static func  onNetworkSuccess(complete: @escaping () -> Void){
         judgeNetwork { ok in
             if(ok){
                 complete()

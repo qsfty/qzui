@@ -7,9 +7,9 @@ import SwiftUI
 /**
  * 网络连接失败视图
  */
-struct NetworkErrorView: View {
+public struct NetworkErrorView: View {
 
-    var body: some View {
+     public var body: some View {
         HStack{
             Spacer()
             VStack{

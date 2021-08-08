@@ -9,12 +9,12 @@ import SwiftUI
 /**
  * 开关组件
  */
-struct SwitchButton : View {
+public struct SwitchButton : View {
 
     @Binding var value: Bool
 
     @State var x: CGFloat = 0
-    var body: some View {
+     public var body: some View {
 
         let circleWidth:CGFloat = 20
         let wrapperWidth:CGFloat = circleWidth * 2
@@ -37,13 +37,13 @@ struct SwitchButton : View {
 }
 
 
-struct SwitchActionButton : View {
+public struct SwitchActionButton : View {
 
     var value: Bool
     var action: (() -> Void)
     @State var x: CGFloat = 0
 
-    var body: some View {
+     public var body: some View {
 
         let circleWidth:CGFloat = 20
         let wrapperWidth:CGFloat = circleWidth * 2

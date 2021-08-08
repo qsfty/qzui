@@ -4,7 +4,7 @@
 
 import SwiftUI
 
-struct HintView: View {
+public struct HintView: View {
 
     var hint: String
 
@@ -12,7 +12,7 @@ struct HintView: View {
         self.hint = hint
     }
 
-    var body: some View {
+     public var body: some View {
 
         HStack {
             Spacer(minLength: 0)
