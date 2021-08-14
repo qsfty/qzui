@@ -29,10 +29,6 @@ a lot of help utils
     'BUILD_LIBRARY_FOR_DISTRIBUTION' => 'YES'
   }
 
-  s.resources = [
-  'LibAssets/Lib.xcassets',
-  ]
-
   s.weak_frameworks = 'SwiftUI', 'Combine'
   s.dependency 'SDWebImageSwiftUI', '~> 2.0.2'
   s.dependency 'Alamofire', '~> 5.4.1'

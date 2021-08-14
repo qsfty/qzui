@@ -63,7 +63,6 @@
 		C713F8FD26BEA1DA000BF20C /* MyCollectUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C713F8EE26BEA1DA000BF20C /* MyCollectUtil.swift */; };
 		C713F8FE26BEA1DA000BF20C /* color.swift in Sources */ = {isa = PBXBuildFile; fileRef = C713F8F026BEA1DA000BF20C /* color.swift */; };
 		C713F8FF26BEA1DA000BF20C /* util.swift in Sources */ = {isa = PBXBuildFile; fileRef = C713F8F226BEA1DA000BF20C /* util.swift */; };
-		C713F92526C01D10000BF20C /* Lib.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C713F92426C01D10000BF20C /* Lib.xcassets */; };
 		EAC7416F789465455C82C884 /* Pods_qzui.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 678CA371955E393A349EBCB3 /* Pods_qzui.framework */; };
 /* End PBXBuildFile section */
 
@@ -129,7 +128,6 @@
 		C713F8EE26BEA1DA000BF20C /* MyCollectUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectUtil.swift; sourceTree = "<group>"; };
 		C713F8F026BEA1DA000BF20C /* color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = color.swift; sourceTree = "<group>"; };
 		C713F8F226BEA1DA000BF20C /* util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = util.swift; sourceTree = "<group>"; };
-		C713F92426C01D10000BF20C /* Lib.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Lib.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,7 +239,6 @@
 		C713F8C326BEA1C4000BF20C = {
 			isa = PBXGroup;
 			children = (
-				C713F92326C01CFA000BF20C /* LibAssets */,
 				C713F8DE26BEA1DA000BF20C /* Lib */,
 				C713F8CE26BEA1C4000BF20C /* qzui */,
 				C713F8CD26BEA1C4000BF20C /* Products */,
@@ -372,14 +369,6 @@
 			path = os;
 			sourceTree = "<group>";
 		};
-		C713F92326C01CFA000BF20C /* LibAssets */ = {
-			isa = PBXGroup;
-			children = (
-				C713F92426C01D10000BF20C /* Lib.xcassets */,
-			);
-			path = LibAssets;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -441,7 +430,6 @@
 			files = (
 				C713F8D726BEA1C5000BF20C /* Preview Assets.xcassets in Resources */,
 				C713F8D426BEA1C5000BF20C /* Assets.xcassets in Resources */,
-				C713F92526C01D10000BF20C /* Lib.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
