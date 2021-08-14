@@ -4,8 +4,7 @@
 
 
 import SwiftUI
-
-var openGesture = true
+public var openGesture = true
 
 extension UINavigationController: UIGestureRecognizerDelegate {
      override open func viewDidLoad() {

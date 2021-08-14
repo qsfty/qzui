@@ -11,6 +11,8 @@ public struct ToastDO{
     public var sheet: Bool = false
     public var show: Bool = false
 
+    public init(){}
+
     public static func success(_ message: String) -> ToastDO{
         var toastDO = ToastDO()
         toastDO.success = true

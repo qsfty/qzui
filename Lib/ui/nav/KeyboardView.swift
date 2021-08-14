@@ -9,7 +9,12 @@ public struct KeyboardListenView: View {
     var up: ((_ height: CGFloat) -> Void)?
     var down: (() -> Void)?
 
-     public var body: some View {
+    public init(up: ((CGFloat) -> ())?, down: (() -> ())?) {
+        self.up = up
+        self.down = down
+    }
+
+    public var body: some View {
         Text("").onAppear{
             NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: OperationQueue.current) { (noti) in
                 let value = noti.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! CGRect

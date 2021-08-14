@@ -6,8 +6,13 @@ import SwiftUI
 
 public struct ToastView: View {
 
-    var sheet: Bool = false
+    public var sheet: Bool = false
     @Binding var toastInfo: ToastDO
+
+    public init(sheet: Bool = false, toastInfo: Binding<ToastDO>) {
+        self.sheet = sheet
+        self._toastInfo = toastInfo
+    }
 
      public var body: some View {
 

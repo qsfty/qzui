@@ -5,7 +5,7 @@
 import SwiftUI
 
 
-class MyTimerUtil {
+public class MyTimerUtil {
 
     public static func  sleep(_ time: TimeInterval, complete: @escaping () -> Void) -> Timer{
         Timer.scheduledTimer(withTimeInterval: time, repeats: false) { timer in

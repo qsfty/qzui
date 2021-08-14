@@ -12,13 +12,13 @@
 import SwiftUI
 
 
-class MyEnvUtil {
+public class MyEnvUtil {
 
     //private static let isTestFlight = NSBundle.mainBundle().appStoreReceiptURL?.lastPathComponent == "sandboxReceipt"
-    private static let isTestFlight = Bundle.main.appStoreReceiptURL?.lastPathComponent == "sandboxReceipt"
+    public static let isTestFlight = Bundle.main.appStoreReceiptURL?.lastPathComponent == "sandboxReceipt"
 
     // This can be used to add debug statements.
-    static var isDebug: Bool {
+    public static var isDebug: Bool {
         #if DEBUG
         return true
         #else
@@ -28,7 +28,7 @@ class MyEnvUtil {
 
 
 
-    static var envName: String {
+    public static var envName: String {
         if(isDebug){
             return "开发版本\(AppVersionApi.currentVersionString)"
         }
@@ -38,7 +38,7 @@ class MyEnvUtil {
         return "\(AppVersionApi.currentVersionString)"
     }
 
-    static var isTestFlightMode: Bool {
+    public static var isTestFlightMode: Bool {
         return !isDebug && isTestFlight
     }
 

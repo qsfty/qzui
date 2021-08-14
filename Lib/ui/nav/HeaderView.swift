@@ -42,7 +42,14 @@ public struct HeaderView: View {
     var title: String
     var showTitle: Bool = true
     var backAction: (() -> Void)? = nil
-     public var body: some View {
+
+    public init(title: String, showTitle: Bool = true, backAction: (() -> ())? = nil) {
+        self.title = title
+        self.showTitle = showTitle
+        self.backAction = backAction
+    }
+
+    public var body: some View {
         HStack{
             FixLeftLink(action: backAction)
             Spacer()
@@ -119,7 +126,7 @@ public struct FixLeftTextLink: View {
     var action: (() -> Void)? = nil
      public var body: some View {
         HStack{
-            Text(label).fontSize(16).color("button0").padding(.vertical).tap0{
+            Text(label).fontSize(16).themeColor().padding(.vertical).tap0{
                 self.action?()
             }
             Spacer(minLength: 0)
@@ -157,7 +164,7 @@ public struct FixRightLink: View {
                 }
             }
             else{
-                Text(label).fontSize(16).color("button0").padding(.vertical).tap0{
+                Text(label).fontSize(16).themeColor().padding(.vertical).tap0{
                     self.action?()
                 }
             }
@@ -172,7 +179,14 @@ public struct FixRightIconLink: View {
     var icon: String
     var iconColor: Color
     var action: (() -> Void)?
-     public var body: some View {
+
+    public init(icon: String, iconColor: Color, action: (() -> ())?) {
+        self.icon = icon
+        self.iconColor = iconColor
+        self.action = action
+    }
+
+    public var body: some View {
         HStack{
             Spacer(minLength: 0)
             Image(systemName: icon).font(.system(size: 22)).color(iconColor).tap0{
@@ -210,7 +224,14 @@ public struct HeaderWithCompleteView: View {
     var backAction: (() -> Void)? = nil
     var completeAction: () -> Void
 
-     public var body: some View {
+    public init(title: String, showTitle: Bool = true, backAction: (() -> ())?, completeAction: @escaping () -> ()) {
+        self.title = title
+        self.showTitle = showTitle
+        self.backAction = backAction
+        self.completeAction = completeAction
+    }
+
+    public var body: some View {
         HStack{
             FixLeftLink(action: self.backAction)
             Spacer()

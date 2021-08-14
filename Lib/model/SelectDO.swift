@@ -4,7 +4,6 @@
 
 import Foundation
 
-
 public struct SelectDO: Codable, Equatable{
     public static func ==(lhs: SelectDO, rhs: SelectDO) -> Bool {
         lhs.label == rhs.label && lhs.value == rhs.value
@@ -12,6 +11,11 @@ public struct SelectDO: Codable, Equatable{
 
     public var label: String
     public var value: String
+
+    public init(label: String, value: String) {
+        self.label = label
+        self.value = value
+    }
 }
 
 

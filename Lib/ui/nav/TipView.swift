@@ -14,6 +14,13 @@ public struct TipView : View {
 
     @State var show: Bool = false
 
+    public init(tip: String, always: Bool = false, padding: Int = 15, top: Bool = true) {
+        self.tip = tip
+        self.always = always
+        self.padding = padding
+        self.top = top
+    }
+
     public static func  new(_ tip: String, top: Bool = true) -> TipView {
         TipView(tip: tip, top: top)
     }

@@ -37,6 +37,10 @@ public struct RadioButtonView: View {
 
     var value: Bool
 
+    public init(value: Bool) {
+        self.value = value
+    }
+
     public var body: some View {
         Group{
             if value {
@@ -60,12 +64,12 @@ public struct RadioFillNumberButton: View {
 
         ZStack{
             if(self.value == 0){
-                Circle().stroke(self.value > 0 ? Color("button0") : Color.white, lineWidth: 4)
+                Circle().stroke(self.value > 0 ? Color.theme : Color.white, lineWidth: 4)
                         .frame(width: self.size + 2, height: self.size + 2).background(Color.gray.opacity(0.2))
                         .cornerRadius(self.size + 2)
             }
             else{
-                Circle().foregroundColor(Color("button0")).frame(width: self.size + 4, height: self.size + 4)
+                Circle().foregroundColor(Color.theme).frame(width: self.size + 4, height: self.size + 4)
             }
 
             Text(self.value > 0 ? "\(self.value)" : "").font(.system(size: 14)).bold()

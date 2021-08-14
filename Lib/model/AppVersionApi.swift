@@ -49,11 +49,11 @@ public struct AppVersion: Codable {
     var bugVersion: Int = 0
     var build: Int = 0
 
-    init(){
+    public init(){
 
     }
 
-    init(version: String){
+    public init(version: String){
         let rs = version.split(separator: ".")
         self.majorVersion = Int(rs[0])!
         self.minorVersion = Int(rs[1])!

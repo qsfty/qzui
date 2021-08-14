@@ -46,7 +46,14 @@ public struct LeadingTextView: View {
     var color: Color = Color.primary
     var bold: Bool = false
 
-     public var body: some View {
+    public init(title: String, fontSize: CGFloat = 14, color: Color = Color.primary, bold: Bool = false) {
+        self.title = title
+        self.fontSize = fontSize
+        self.color = color
+        self.bold = bold
+    }
+
+    public var body: some View {
         HStack{
             Text(self.title).fontWeight(bold ? .bold : .none).fontSize(fontSize).color(color)
             Spacer()

@@ -38,3 +38,20 @@ public let colorMap: [ThemeMode:[ColorMode:Color]] = [
 public func trans(color: String) -> Color {
     Color.blue
 }
+
+
+extension Color {
+
+    public static let delete = Color("delete")
+    public static let second = Color("second")
+    public static let third = Color("third")
+    public static let shadow = Color("shadow")
+    public static let mainBg0 = Color("mainBg0")
+    public static let mainBg = Color("mainBg")
+    public static let mainBg1 = Color("mainBg1")
+    public static let themeFg = Color.white
+    public static let theme = Color("theme")
+
+}
+
+

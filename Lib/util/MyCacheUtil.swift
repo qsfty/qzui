@@ -6,7 +6,7 @@
 import SwiftUI
 
 
-class MyCacheUtil {
+public class MyCacheUtil {
 
     public static func  set(_ key: String, value: String) {
         UserDefaults(suiteName: "group.cn.qsfty.schedule")?.set(value, forKey: key)

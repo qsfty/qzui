@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'QzUI'
-  s.version          = '0.0.4'
+  s.version          = '0.0.9'
   s.summary          = 'SwiftUI Helper'
 
   s.description      = <<-DESC
@@ -28,6 +28,10 @@ a lot of help utils
     'DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER' => 'NO',
     'BUILD_LIBRARY_FOR_DISTRIBUTION' => 'YES'
   }
+
+  s.resources = [
+  'LibAssets/Lib.xcassets',
+  ]
 
   s.weak_frameworks = 'SwiftUI', 'Combine'
   s.dependency 'SDWebImageSwiftUI', '~> 2.0.2'

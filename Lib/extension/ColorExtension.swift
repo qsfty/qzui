@@ -73,9 +73,10 @@ extension Color {
 
     public func stringify() -> String {
         let v = self.uiColor().hexValue()
-        if(String(v.reversed()).starts(with: "FF")){
-            return v.slice(begin: 0, end: 2)
-        }
+//        ps(v)
+//        if(String(v.reversed()).starts(with: "FF")){
+//            return v.slice(begin: 0, end: -2)
+//        }
         return v
     }
 

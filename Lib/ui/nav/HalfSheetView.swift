@@ -34,7 +34,7 @@ public struct HalfSheetView<Content: View>: View {
     var cancel: (() -> Void)? = nil
     @State var end: Bool = false
 
-    init(title: String = "",shown: Binding<Bool>, height: CGFloat = 300, rightText: String = "", rightAction: (() -> Void)? = nil, action:@escaping (Bool) -> Void, cancel: (() -> Void)? = nil,  content: () -> Content){
+    public init(title: String = "",shown: Binding<Bool>, height: CGFloat = 300, rightText: String = "", rightAction: (() -> Void)? = nil, action:@escaping (Bool) -> Void, cancel: (() -> Void)? = nil,  content: () -> Content){
         self.title = title
         self.height = height
         self._shown = shown

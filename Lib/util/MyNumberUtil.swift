@@ -6,37 +6,41 @@ import SwiftUI
 
 extension Int {
 
-    func toFloat() -> CGFloat{
+    public func toFloat() -> CGFloat{
         CGFloat(self)
     }
 
-    func toDouble() -> Double{
+    public func toDouble() -> Double{
         Double(self)
     }
 
-    func toFixed(_ len: Int) -> Double {
+    public func toFixed(_ len: Int) -> Double {
         (self.toDouble() * pow(10, len.toDouble())).rounded() / pow(10, len.toDouble())
     }
-    func toAbs() -> Int {
+    public func toAbs() -> Int {
         Int(abs(self))
+    }
+
+    public func toString() -> String {
+        String(describing: self)
     }
 }
 
 extension CGFloat {
 
-    func toInt() -> Int{
+    public func toInt() -> Int{
         Int(self)
     }
 
-    func toDouble() -> Double{
+    public func toDouble() -> Double{
         Double(self)
     }
 
-    func toFixed(_ len: Int) -> Double {
+    public func toFixed(_ len: Int) -> Double {
         (self.toDouble() * pow(10, len.toDouble())).rounded() / pow(10, len.toDouble())
     }
 
-    func toAbs() -> Int {
+    public func toAbs() -> Int {
         Int(abs(self))
     }
 }
@@ -46,24 +50,24 @@ extension CGFloat {
 
 extension Double {
 
-    func toInt() -> Int{
+    public func toInt() -> Int{
         Int(self)
     }
 
-    func toFloat() -> CGFloat{
+    public func toFloat() -> CGFloat{
         CGFloat(self)
     }
 
-    func toFixed(_ len: Int) -> Double {
+    public func toFixed(_ len: Int) -> Double {
         (self * pow(10, len.toDouble())).rounded() / pow(10, len.toDouble())
     }
 
-    func toAbs() -> Int {
+    public func toAbs() -> Int {
         Int(abs(self))
     }
 }
 
-func hex2decimal(_ num: String) -> Int{
+public func hex2decimal(_ num: String) -> Int{
     var sum: Int = 0
     let str: String = num.uppercased()
     for i in str.utf8 {

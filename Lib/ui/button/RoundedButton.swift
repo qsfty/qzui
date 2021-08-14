@@ -4,6 +4,7 @@
 
 import SwiftUI
 
+
 /**
  * 圆角矩形
  */
@@ -14,12 +15,12 @@ public struct RoundedButton: View {
     public var width: CGFloat = -1
     public var height: CGFloat = -1
     public var color: Color = Color.white
-    public var bg: Color = Color("button0")
+    public var bg: Color = Color.theme
     public var radius: Int = 10
     public var action: () -> Void
 
 
-    public init(_ name: String, fontSize: CGFloat = 14, width: CGFloat = -1, height: CGFloat = -1,  radius: Int = 4,color: Color = Color.white, bg: Color = Color("button0"), action: @escaping () -> ()) {
+    public init(_ name: String, fontSize: CGFloat = 14, width: CGFloat = -1, height: CGFloat = -1,  radius: Int = 4,color: Color = Color.white, bg: Color = Color.theme, action: @escaping () -> ()) {
         self.name = name
         self.fontSize = fontSize
         self.width = width

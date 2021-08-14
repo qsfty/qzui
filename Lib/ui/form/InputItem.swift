@@ -11,7 +11,13 @@ public struct ItemImageView: View {
     var iconColor: Color
     var label: String
 
-     public var body: some View {
+    public init(icon: String, iconColor: Color, label: String) {
+        self.icon = icon
+        self.iconColor = iconColor
+        self.label = label
+    }
+
+    public var body: some View {
         HStack{
             if(icon != "" && iconColor != Color.clear){
                 Image(systemName: icon).font(.system(size: 16)).color(iconColor).width(30)
@@ -35,8 +41,18 @@ public struct InputItemView: View, Equatable {
     var keyboardType: UIKeyboardType = .default
     var focusAction: ((Bool) -> Void)? = nil
 
-     public var body: some View {
-        VStack(spacing: 10){
+    public init(icon: String = "", iconColor: Color = Color.clear, label: String, value: Binding<String>, keyboardType: UIKeyboardType = .default, focusAction: ((Bool) -> ())? = nil) {
+        self.icon = icon
+        self.iconColor = iconColor
+        self.label = label
+        self._value = value
+        self.keyboardType = keyboardType
+        self.focusAction = focusAction
+    }
+
+    public var body: some View {
+        ps2("render input", label)
+        return VStack(spacing: 10){
             HStack{
                 ItemImageView(icon: icon, iconColor: iconColor, label: self.label).tap0{
                     UIApplication.shared.endEditing()
@@ -48,6 +64,66 @@ public struct InputItemView: View, Equatable {
             }
         }.padding().mainBg()
     }
+}
+
+
+
+
+public struct DebunceInputItemView: View, Equatable {
+
+    public static func  == (lhs: DebunceInputItemView, rhs: DebunceInputItemView) -> Bool {
+        lhs.value == rhs.value
+    }
+
+    var icon: String = ""
+    var iconColor: Color = Color.clear
+    var label: String
+    @State var value: String = ""
+    var keyboardType: UIKeyboardType = .default
+    var focusAction: ((Bool) -> Void)? = nil
+    var changeAction: ((String) -> Void)? = nil
+
+    @State var timer: Timer? = nil
+
+
+    public init(icon: String = "", iconColor: Color = Color.clear, label: String, value: String, keyboardType: UIKeyboardType = .default, changeAction:  @escaping (String) -> Void, focusAction:((Bool) -> ())? = nil) {
+        self.icon = icon
+        self.iconColor = iconColor
+        self.label = label
+        self.value = value
+        self.keyboardType = keyboardType
+        self.focusAction = focusAction
+        self.changeAction = changeAction
+    }
+
+    public var body: some View {
+        ps2("render input", label)
+        return VStack(spacing: 10){
+            HStack{
+                ItemImageView(icon: icon, iconColor: iconColor, label: self.label).tap0{
+                    UIApplication.shared.endEditing()
+                }
+                TextField("请填写\(label)", text: $value,  onEditingChanged: { v in
+                    self.focusAction?(v)
+                }).accentColor(Color.blue).multilineTextAlignment(.trailing)
+                        .keyboardType(keyboardType)
+                .onChange(of: value) { v in
+                    self.debounce(v)
+                }
+            }
+        }.padding().mainBg()
+    }
+
+    func debounce(_ v: String){
+        if(self.timer != nil){
+            self.timer?.invalidate()
+        }
+        self.timer = MyTimerUtil.sleep1{
+            self.changeAction?(v)
+            self.timer = nil
+        }
+    }
+
 }
 
 
@@ -67,7 +143,15 @@ public struct InputItem2View: View,Equatable {
 
     var focusAction: ((Bool) -> Void)? = nil
 
-     public var body: some View {
+    public init(icon: String = "", iconColor: Color = Color.clear, label: String, value: Binding<String>, focusAction: ((Bool) -> ())? = nil) {
+        self.icon = icon
+        self.iconColor = iconColor
+        self.label = label
+        self._value = value
+        self.focusAction = focusAction
+    }
+
+    public var body: some View {
         VStack(spacing: 10){
             HStack{
                 ItemImageView(icon: icon, iconColor: iconColor, label: self.label)
@@ -75,12 +159,14 @@ public struct InputItem2View: View,Equatable {
             }
         }.padding().mainBg()
     }
+
+
 }
 
 
 public struct SelectItemView: View, Equatable {
     public static func  ==(lhs: SelectItemView, rhs: SelectItemView) -> Bool {
-        lhs._id == rhs._id && lhs.options == rhs.options
+        lhs._id == rhs._id
     }
 
     var icon: String = ""
@@ -91,13 +177,23 @@ public struct SelectItemView: View, Equatable {
     var options: [SelectDO]
 
     @State var showPicker: Bool = false
-    @State var timer: Timer? = nil
 
     var _id: String {
         _value.wrappedValue
     }
 
-     public var body: some View {
+    public init(icon: String = "", iconColor: Color = .clear, label: String, value: Binding<String>, valueColor: Color = Color.primary, options: [SelectDO], showPicker: Bool = false) {
+        self.icon = icon
+        self.iconColor = iconColor
+        self.label = label
+        self._value = value
+        self.valueColor = valueColor
+        self.options = options
+        self.showPicker = showPicker
+    }
+
+    public var body: some View {
+        ps2("render select", label)
         return VStack(spacing: 10){
             HStack{
                 ItemImageView(icon: icon, iconColor: iconColor, label: self.label)
@@ -108,10 +204,9 @@ public struct SelectItemView: View, Equatable {
                 else{
                     Text(getLabel(value: value)).color(valueColor)
                 }
-            }.tap{
-                MyTimerUtil.animation2 {
-                    self.showPicker.toggle()
-                }
+            }.padding(.vertical).tap{
+                UIApplication.shared.endEditing()
+                self.showPicker.toggle()
             }
             if(showPicker){
                 Picker("", selection: $value) {
@@ -120,28 +215,7 @@ public struct SelectItemView: View, Equatable {
                     }
                 }.width(MyUIUtil.fullWidth() - 80)
             }
-        }.padding().mainBg().onChange(of: value) { _ in
-            if(showPicker){
-                self.debounce()
-            }
-        }.onChange(of: showPicker) { v in
-            if(v){
-                self.debounce()
-            }
-        }
-    }
-
-    func debounce(){
-        if(true){
-            return
-        }
-        if(self.timer != nil){
-            self.timer?.invalidate()
-        }
-        self.timer = MyTimerUtil.sleep1{
-            self.showPicker = false
-            self.timer = nil
-        }
+        }.padding(.horizontal).mainBg()
     }
 
     func getLabel(value: String) -> String {
@@ -171,8 +245,19 @@ public struct ColorSelectItemView: View, Equatable {
 
     @State var chooseColor: Color = Color.clear
 
-     public var body: some View {
-        VStack(spacing: 0){
+    public init(icon: String = "", iconColor: Color = Color.clear, label: String, value: Binding<String>, valueColor: Color = Color.primary, showPicker: Bool = false, timer: Timer? = nil, chooseColor: Color = .clear) {
+        self.icon = icon
+        self.iconColor = iconColor
+        self.label = label
+        self._value = value
+        self.valueColor = valueColor
+        self.showPicker = showPicker
+        self.timer = timer
+    }
+
+    public var body: some View {
+        ps2("render color select", label)
+        return VStack(spacing: 0){
             HStack{
                 ItemImageView(icon: icon, iconColor: iconColor, label: self.label)
                 Spacer()
@@ -186,6 +271,7 @@ public struct ColorSelectItemView: View, Equatable {
             UIApplication.shared.endEditing()
         }.onAppear{
             self.chooseColor = parseHexColor(self.value)
+            ps("choose color", self.chooseColor, self.value)
         }
     }
 }
@@ -219,9 +305,7 @@ public struct SelectTimeRangeItemView: View {
 //                    Text(getLabel(value: value)).color(valueColor)
                 }
             }.padding(.vertical, 8).mainBg().tap{
-                MyTimerUtil.animation2 {
-                    self.showPicker.toggle()
-                }
+                self.showPicker.toggle()
             }.zIndex(10)
             if(showPicker){
                 HStack(alignment: .center){
@@ -334,7 +418,12 @@ public struct UpgradeItemView: View {
     var appId = ""
     @State var latestVersion = AppVersion(version: "0.0.1")
 
-     public var body: some View {
+    public init(bundle: String, appId: String) {
+        self.bundle = bundle
+        self.appId = appId
+    }
+
+    public var body: some View {
 
         Group {
             if(latestVersion.largeThan(other: AppVersionApi.getCurrentVersion())){
@@ -373,7 +462,14 @@ public struct SwitchSetItemView : View, Equatable {
     var label: String
     @Binding var value: Bool
 
-     public var body: some View {
+    public init(icon: String = "", iconColor: Color = .clear, label: String, value: Binding<Bool>) {
+        self.icon = icon
+        self.iconColor = iconColor
+        self.label = label
+        self._value = value
+    }
+
+    public var body: some View {
         return HStack{
             ItemImageView(icon: icon, iconColor: iconColor, label: label)
             Spacer()
@@ -396,7 +492,15 @@ public struct SwitchActionSetItemView : View, Equatable {
     var value: Bool
     var action: () -> Void
 
-     public var body: some View {
+    public init(icon: String = "", iconColor: Color = Color.clear, label: String, value: Bool, action: @escaping () -> ()) {
+        self.icon = icon
+        self.iconColor = iconColor
+        self.label = label
+        self.value = value
+        self.action = action
+    }
+
+    public var body: some View {
 
         HStack{
             ItemImageView(icon: icon, iconColor: iconColor, label: label)
@@ -420,8 +524,15 @@ public struct LinkSetItemView<Destination: View> : View {
     var disable: Bool = false
     @State var isActive: Bool = false
 
+    public init(icon: String = "", iconColor: Color = Color.clear, label: String, destination: Destination, disable: Bool = false) {
+        self.icon = icon
+        self.iconColor = iconColor
+        self.label = label
+        self.destination = destination
+        self.disable = disable
+    }
 
-     public var body: some View {
+    public var body: some View {
 
         VStack{
             HStack{

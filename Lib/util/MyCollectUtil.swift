@@ -6,7 +6,7 @@ import Foundation
 
 
 
-func createArray<T>(_ args: T...) -> [T] {
+public func createArray<T>(_ args: T...) -> [T] {
     var result: [T] = []
     args.forEach{ one in
         result.append(one)
@@ -14,7 +14,7 @@ func createArray<T>(_ args: T...) -> [T] {
     return result
 }
 
-func createSet<T: Hashable>(_ args: T...) -> Set<T> {
+public func createSet<T: Hashable>(_ args: T...) -> Set<T> {
     var result: Set<T> = []
     args.forEach{ one in
         result.insert(one)
@@ -22,7 +22,7 @@ func createSet<T: Hashable>(_ args: T...) -> Set<T> {
     return result
 }
 
-func createIntMap(_ args: Any...) -> [String:Int] {
+public func createIntMap(_ args: Any...) -> [String:Int] {
     var result:[String:Int] = [:]
     for i in stride(from: 0, to: args.count % 2 == 1 ? args.count - 1 : args.count, by: 2) {
         result.updateValue(String(describing: args[i+1]).toInt(), forKey: String(describing: args[i]))
@@ -30,10 +30,18 @@ func createIntMap(_ args: Any...) -> [String:Int] {
     return result
 }
 
-func createStringMap(_ args: Any...) -> [String:String] {
+public func createStringMap(_ args: Any...) -> [String:String] {
     var result:[String:String] = [:]
     for i in stride(from: 0, to: args.count % 2 == 1 ? args.count - 1 : args.count, by: 2) {
         result.updateValue(String(describing: args[i+1]), forKey: String(describing: args[i]))
     }
     return result
+}
+
+
+public func mapContains(_ map: [String: Bool], key: String ) -> Bool {
+    guard let v = map[key] else{
+        return false
+    }
+    return v
 }

@@ -13,7 +13,7 @@ extension Text{
     }
 
     public func link() -> some View {
-        self.fontSize(14).color(Color("button0"))
+        self.fontSize(14).color(Color.theme)
     }
 
     public func fontSize(_ fontSize: CGFloat) -> Text{
@@ -145,11 +145,15 @@ extension View {
     }
 
     public func themeColor() -> some View {
-        self.foregroundColor(Color("button0"))
+        self.foregroundColor(Color.theme)
+    }
+
+    public func themeFg() -> some View {
+        self.foregroundColor(Color.white)
     }
 
     public func themeBg() -> some View {
-        self.bg("button0")
+        self.bg(Color.theme)
     }
 
     public func theme() -> some View {
@@ -320,6 +324,13 @@ extension View {
                 .mainBg0()
     }
 
+    public func selfListRow() -> some View {
+        self.listRowInsets(EdgeInsets(top: -2, leading:0, bottom: 0, trailing: 0))
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                .listRowBackground(Color.mainBg0)
+                .background(Color.mainBg0)
+    }
+
     public func line1Dialog() -> some View{
         self.dialogWidth().padding(.vertical).dialogBg().cornerRadius(6).shadow(color: Color.gray.opacity(0.2), radius: 10).gapTop(height: 160).zIndex(10)
     }
@@ -465,32 +476,6 @@ public struct HighTapModifier: ViewModifier {
         })
     }
 
-}
-
-
-
-
-
-func ps(_ items: Any..., separator: String = " ", terminator: String = "\n"){
-    #if DEBUG
-    // This code will be run while installing from Xcode
-    print("【\(MyDateUtil.formatDateTime(Date())) APP LOG】")
-    items.forEach{ data in
-        print(data)
-    }
-    print()
-    #endif
-}
-
-
-func widgetPs(_ items: Any..., separator: String = " ", terminator: String = "\n"){
-    #if DEBUG
-    print("【\(MyDateUtil.formatDateTime(Date())) WIDGET LOG】")
-    items.forEach{ data in
-        print(data)
-    }
-    print("")
-    #endif
 }
 
 

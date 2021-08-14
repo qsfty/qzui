@@ -6,7 +6,7 @@
 import SwiftUI
 import CleanJSON
 
-class MyJsonUtil {
+public class MyJsonUtil {
 
     public static func  print<T: Codable>(data: T){
         ps(stringify(data: data))

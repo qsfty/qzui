@@ -25,7 +25,7 @@ public struct LoadingBarView: View{
 
      public var body: some View {
         HStack(spacing:0){
-            Rectangle().frame(width: self.loadingWidth, height: 3).animation(self.loading ? .linear: nil).foregroundColor(self.loadingWidth > 0 ? Color("button0") : Color.clear)
+            Rectangle().frame(width: self.loadingWidth, height: 3).animation(self.loading ? .linear: nil).foregroundColor(self.loadingWidth > 0 ? Color.theme : Color.clear)
             Spacer(minLength: 0)
         }.frame(width: self.width).onAppear{
             onPageAppear()

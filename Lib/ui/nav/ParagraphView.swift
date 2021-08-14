@@ -11,7 +11,7 @@ public struct ParagraphView: View {
     var content: String
     var lineHeight: Int = 0
 
-    init(_ content: String, style: LineSize = .base) {
+    public init(_ content: String, style: LineSize = .base) {
         self.content = content
         self.lineHeight = style.rawValue
     }
@@ -32,7 +32,7 @@ public struct ParagraphView: View {
     }
 }
 
-enum LineSize: Int {
+public enum LineSize: Int {
     case compress = 10
     case base = 16
     case large = 20

@@ -52,7 +52,12 @@ public struct EmptyLinkView<Destination: View>: View {
 
     @Binding var isActive: Bool
 
-     public var body: some View {
+    public init(destination: Destination, isActive: Binding<Bool>) {
+        self.destination = destination
+        self._isActive = isActive
+    }
+
+    public var body: some View {
 
         NavigationLink(destination: destination, isActive: $isActive){
             Text("")
