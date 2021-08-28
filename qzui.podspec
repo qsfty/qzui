@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'QzUI'
-  s.version          = '0.0.11'
+  s.version          = '0.0.12'
   s.summary          = 'SwiftUI Helper'
 
   s.description      = <<-DESC
@@ -30,7 +30,6 @@ a lot of help utils
   }
 
   s.weak_frameworks = 'SwiftUI', 'Combine'
-  s.dependency 'SDWebImageSwiftUI', '~> 2.0.2'
   s.dependency 'Alamofire', '~> 5.4.1'
   s.dependency 'CleanJSON', '~> 1.0.8'
   s.swift_version = '5.2'
