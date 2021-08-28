@@ -24,6 +24,19 @@ extension Int {
     public func toString() -> String {
         String(describing: self)
     }
+    
+    public func toStringWithPrefix(len: Int, prefix: String) -> String {
+        var me = self.toString()
+        let c = me.count
+        for _ in 0 ..< len - c {
+            me = prefix + me
+        }
+        return me
+    }
+    
+    public func toTwo() -> String {
+        toStringWithPrefix(len: 2, prefix: "0")
+    }
 }
 
 extension CGFloat {
