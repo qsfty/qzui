@@ -7,7 +7,7 @@ git push
 git tag 0.0.16
 git push --tags
 
-pod trunk push qzui.podspec --allow-warnings
+pod trunk push QzUI.podspec --allow-warnings
 
 
 # pod spec lint --allow-warnings
