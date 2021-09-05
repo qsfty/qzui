@@ -3,22 +3,18 @@
 platform :ios, '14.0'
 
 
-def share_pods
-  pod 'CleanJSON'
-end
-
 use_frameworks!
 
 target 'qzui' do
   # Comment the next line if you don't want to use dynamic frameworks
   
-  pod 'Alamofire'
+  #pod 'Alamofire'
   # pod 'SwiftUiX'
   
-  pod 'SDWebImageSwiftUI' 
+  #pod 'SDWebImageSwiftUI'
   # Pods for course
-  
- share_pods
+
+  pod 'QzUI', :path => '/Users/qiangzi/Work/2021/ios/lib/qzui'
 
 end
 

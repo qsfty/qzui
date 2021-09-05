@@ -4,6 +4,7 @@
 
 import SwiftUI
 
+
 public struct FollowButton : View {
 
     public var followed: Bool
@@ -49,8 +50,5 @@ public struct FollowButton : View {
                         self.action()
                     }
         }
-
     }
-
-
 }

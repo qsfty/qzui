@@ -68,7 +68,11 @@ public struct EmptyLinkView<Destination: View>: View {
 
 
 public struct BugFillLinkView: View {
-     public var body: some View {
+    public init() {
+
+    }
+
+    public var body: some View {
         NavigationLink(destination: Text("")){
             Text("")
         }.height(0).width(0)

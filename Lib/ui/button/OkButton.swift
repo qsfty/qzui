@@ -52,7 +52,7 @@ public struct LongOkButton: View {
     public var verticalPadding: CGFloat = 5
     public var action: () -> Void
 
-    public init(label: String = "确定", horizontalPadding: CGFloat, verticalPadding: CGFloat, action: @escaping () -> ()) {
+    public init(label: String = "确定", horizontalPadding: CGFloat = 15, verticalPadding: CGFloat = 5, action: @escaping () -> ()) {
         self.label = label
         self.horizontalPadding = horizontalPadding
         self.verticalPadding = verticalPadding
@@ -63,7 +63,7 @@ public struct LongOkButton: View {
 
         Text(label).fontSize(14)
                 .width(MyUIUtil.fullWidth() - horizontalPadding * 2)
-                .height(40)
+                .height(45)
                 .theme()
                 .cornerRadius(6).tap(radius: 6, action: action)
                 .padding(.vertical, verticalPadding)
@@ -74,15 +74,24 @@ public struct LongOkButton: View {
 
 public struct LongCancelButton: View {
 
+    public var label: String = ""
     public var padding: CGFloat = 15
+    public var bg: Color = Color.gray
     public var action: () -> Void
+
+    public init(label: String, padding: CGFloat = 15,bg: Color = .gray, action: @escaping () -> ()) {
+        self.label = label
+        self.padding = padding
+        self.bg = bg
+        self.action = action
+    }
 
     public var body: some View {
 
-        Text("取消").fontSize(14)
+        Text(label).fontSize(14)
                 .width(MyUIUtil.fullWidth() - padding * 2)
-                .height(40)
-                .mainBg().color(Color.primary)
+                .height(45)
+                .bg(bg).color(Color.primary)
                 .cornerRadius(6).tap(radius: 6, action: action)
     }
 }

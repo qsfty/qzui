@@ -166,7 +166,7 @@ public struct InputItem2View: View,Equatable {
 
 public struct SelectItemView: View, Equatable {
     public static func  ==(lhs: SelectItemView, rhs: SelectItemView) -> Bool {
-        lhs._id == rhs._id
+        lhs._id == rhs._id && lhs.options == rhs.options
     }
 
     var icon: String = ""
@@ -193,7 +193,7 @@ public struct SelectItemView: View, Equatable {
     }
 
     public var body: some View {
-        ps2("render select", label)
+        ps2("render select", label, value, options)
         return VStack(spacing: 10){
             HStack{
                 ItemImageView(icon: icon, iconColor: iconColor, label: self.label)
@@ -395,7 +395,7 @@ public struct SetItemView: View {
 
 public struct RateItemView: View {
 
-        public var appId = ""
+    public var appId = ""
     public  var effectDate = ""
     public  var showIcon: Bool = false
     @State public var text = "评价APP"

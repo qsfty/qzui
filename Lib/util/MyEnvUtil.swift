@@ -2,13 +2,6 @@
 // Created by 强子 on 2021/8/7.
 //
 
-//
-//  MyEnvUtil.swift
-//  yushu
-//
-//  Created by 强子 on 2020/11/29.
-//
-
 import SwiftUI
 
 

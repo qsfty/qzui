@@ -94,9 +94,7 @@ public struct HalfSheetView<Content: View>: View {
                                     }
                                 }
                             })
-                    ScrollView{
-                        content
-                    }.padding(.bottom, MyUIUtil.getTabbarHeight())
+                    content.padding(.bottom, MyUIUtil.getTabbarHeight())
                     Spacer()
                 }
                         .mainBg().cornerRadius(10).offset(y: self.shown ? (restDialogHeight() + self.moveOffset) : MyUIUtil.fullHeight())

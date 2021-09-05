@@ -8,11 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
-     public var body: some View {
-        Text("Hello, world!")
-            .padding()
+    public var body: some View {
+         HStack{
+             Text("hello")
+             Text("vvvv")
+         }.onAppear{
+             //埋点
+             ps("v1")
+         }.stat(self)
     }
 }
+
+extension View {
+    public func stat(_ instance: Any) -> some View{
+        self.onAppear{
+            //统计开始
+            ps("enter page", String(describing: type(of: instance)))
+        }
+    }
+}
+
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

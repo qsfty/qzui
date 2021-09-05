@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'QzUI'
-  s.version          = '0.0.12'
+  s.version          = '0.0.15'
   s.summary          = 'SwiftUI Helper'
 
   s.description      = <<-DESC
@@ -32,5 +32,7 @@ a lot of help utils
   s.weak_frameworks = 'SwiftUI', 'Combine'
   s.dependency 'Alamofire', '~> 5.4.1'
   s.dependency 'CleanJSON', '~> 1.0.8'
+//# s.dependency 'QzLib', '~> 1.0.4'
+  s.dependency 'QzLib'
   s.swift_version = '5.2'
 end

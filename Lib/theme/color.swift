@@ -51,6 +51,7 @@ extension Color {
     public static let mainBg1 = Color("mainBg1")
     public static let themeFg = Color.white
     public static let theme = Color("theme")
+    public static let vip = Color("vipFg")
 
 }
 
