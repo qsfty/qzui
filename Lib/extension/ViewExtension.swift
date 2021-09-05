@@ -4,7 +4,7 @@
 
 
 import SwiftUI
-
+import QzLib
 
 extension Text{
 

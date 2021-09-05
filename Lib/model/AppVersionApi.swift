@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import CleanJSON
+import QzLib
 
 public struct AppVersionApi{
 

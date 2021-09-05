@@ -2,7 +2,7 @@
 // Created by 强子 on 2021/8/7.
 //
 import SwiftUI
-
+import QzLib
 
 /**
  * 左滑
