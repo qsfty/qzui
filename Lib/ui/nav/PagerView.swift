@@ -3,6 +3,7 @@
 //
 
 import SwiftUI
+import QzLib
 
 /**
  * 滑动组件

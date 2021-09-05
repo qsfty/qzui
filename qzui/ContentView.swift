@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import QzLib
 
 struct ContentView: View {
     public var body: some View {
@@ -19,7 +20,7 @@ struct ContentView: View {
     }
 }
 
-extension View {
+extension View {   
     public func stat(_ instance: Any) -> some View{
         self.onAppear{
             //统计开始

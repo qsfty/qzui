@@ -3,7 +3,7 @@
 //
 
 import SwiftUI
-
+import QzLib
 
 /**
  * 横向加载进度条

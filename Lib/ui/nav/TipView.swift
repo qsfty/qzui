@@ -4,6 +4,7 @@
 
 
 import SwiftUI
+import QzLib
 
 public struct TipView : View {
 
