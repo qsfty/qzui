@@ -5,6 +5,7 @@
 import SwiftUI
 import QzLib
 
+let verticalGap:CGFloat = 10
 
 public struct ItemImageView: View {
     var icon: String
@@ -19,9 +20,6 @@ public struct ItemImageView: View {
 
     public var body: some View {
         HStack{
-            if(icon != "" && iconColor != Color.clear){
-                Image(systemName: icon).font(.system(size: 16)).color(iconColor).width(30)
-            }
             Text(self.label).fontSize(14).second()
         }
     }
@@ -97,7 +95,7 @@ public struct DebunceInputItemView: View, Equatable {
     }
 
     public var body: some View {
-        ps2("render input", label)
+        ps2("render input", label, value)
         return VStack(spacing: 10){
             HStack{
                 ItemImageView(icon: icon, iconColor: iconColor, label: self.label).tap0{
@@ -108,6 +106,7 @@ public struct DebunceInputItemView: View, Equatable {
                 }).accentColor(Color.blue).multilineTextAlignment(.trailing)
                         .keyboardType(keyboardType)
                 .onChange(of: value) { v in
+                    ps("vvvvv", v)
                     self.debounce(v)
                 }
             }
@@ -135,29 +134,38 @@ public struct InputItem2View: View,Equatable {
         lhs.value == rhs.value
     }
 
-
     var icon: String = ""
     var iconColor: Color = Color.clear
     var label: String
+    var placeholder: String = ""
+    var moreIcon: String = ""
     @Binding var value: String
 
     var focusAction: ((Bool) -> Void)? = nil
+    var moreAction: (() -> Void)? = nil
 
-    public init(icon: String = "", iconColor: Color = Color.clear, label: String, value: Binding<String>, focusAction: ((Bool) -> ())? = nil) {
+    public init(icon: String = "",  iconColor: Color = Color.clear, label: String,placeholder: String = "",moreIcon: String = "",moreAction:(() -> ())? = nil,  value: Binding<String>, focusAction: ((Bool) -> ())? = nil) {
         self.icon = icon
         self.iconColor = iconColor
         self.label = label
+        self.placeholder = placeholder
         self._value = value
+        self.moreIcon = moreIcon
         self.focusAction = focusAction
+        self.moreAction = moreAction
     }
 
     public var body: some View {
         VStack(spacing: 10){
             HStack{
                 ItemImageView(icon: icon, iconColor: iconColor, label: self.label)
-                TextField("请填写\(label)", text: $value).accentColor(Color.blue).multilineTextAlignment(.trailing)
+                TextField(self.placeholder == "" ? "请填写\(label)" : self.placeholder, text: $value).accentColor(Color.blue).multilineTextAlignment(.trailing)
+                Spacer()
+//                Image(systemName: moreIcon).tap{
+//                    self.moreAction?()
+//                }
             }
-        }.padding().mainBg()
+        }.cellStyle().mainBg()
     }
 
 
@@ -194,17 +202,17 @@ public struct SelectItemView: View, Equatable {
 
     public var body: some View {
         ps2("render select", label, value, options)
-        return VStack(spacing: 10){
+        return VStack(spacing: 0){
             HStack{
                 ItemImageView(icon: icon, iconColor: iconColor, label: self.label)
                 Spacer()
                 if(self.value == "" || self.value == "请选择"){
-                    Text("请选择").color(Color.gray.opacity(0.5))
+                    Text("请选择").fontSize(14).color(Color.gray.opacity(0.5))
                 }
                 else{
-                    Text(getLabel(value: value)).color(valueColor)
+                    Text(getLabel(value: value)).fontSize(14).color(valueColor)
                 }
-            }.padding(.vertical).tap{
+            }.padding(.vertical, 8).tap{
                 UIApplication.shared.endEditing()
                 self.showPicker.toggle()
             }
@@ -215,7 +223,7 @@ public struct SelectItemView: View, Equatable {
                     }
                 }.width(MyUIUtil.fullWidth() - 80)
             }
-        }.padding(.horizontal).mainBg()
+        }.padding(.horizontal).mainBg().test2()
     }
 
     func getLabel(value: String) -> String {
@@ -261,21 +269,26 @@ public struct ColorSelectItemView: View, Equatable {
             HStack{
                 ItemImageView(icon: icon, iconColor: iconColor, label: self.label)
                 Spacer()
-                Text(self.value).hint()
+                Text(self.value).fontSize(14).hint()
                 ColorPicker(selection: $chooseColor){
                     Text("")
                 }.width(30)
             }
-        }.padding().mainBg().onChange(of: chooseColor) { v in
+        }.cellStyle().mainBg().onChange(of: chooseColor) { v in
             self.value = v.stringify()
             UIApplication.shared.endEditing()
         }.onAppear{
             self.chooseColor = parseHexColor(self.value)
-            ps("choose color", self.chooseColor, self.value)
         }
     }
 }
 
+extension View {
+
+    public func cellStyle() -> some View {
+        self.padding(.horizontal).padding(.vertical, verticalGap)
+    }
+}
 
 public struct SelectTimeRangeItemView: View {
 
@@ -334,7 +347,7 @@ public struct SelectTimeRangeItemView: View {
                     Spacer(minLength: 0)
                 }.zIndex(1).offset(y: 40)
             }
-        }.padding().mainBg()
+        }.cellStyle().mainBg()
     }
 
 
@@ -386,7 +399,7 @@ public struct SetItemView: View {
             ItemImageView(icon: icon, iconColor: iconColor, label: self.label)
             Spacer()
             Image(systemName: "chevron.forward").font(.system(size: 12))
-        }.padding().emptyBg().tap {
+        }.cellStyle().emptyBg().tap {
             self.action()
         }
 
@@ -474,7 +487,7 @@ public struct SwitchSetItemView : View, Equatable {
             ItemImageView(icon: icon, iconColor: iconColor, label: label)
             Spacer()
             SwitchButton(value: $value)
-        }.padding()
+        }.cellStyle()
 
     }
 }
@@ -506,7 +519,7 @@ public struct SwitchActionSetItemView : View, Equatable {
             ItemImageView(icon: icon, iconColor: iconColor, label: label)
             Spacer()
             SwitchActionButton(value: value, action: action).padding(.trailing, 16)
-        }.padding(.leading, 15).padding(.vertical, 15).mainBg()
+        }.cellStyle().mainBg()
 
     }
 }
@@ -534,19 +547,17 @@ public struct LinkSetItemView<Destination: View> : View {
 
     public var body: some View {
 
-        VStack{
-            HStack{
-                ItemImageView(icon: icon, iconColor: iconColor, label: label)
-                EmptyLinkView(destination: destination, isActive: $isActive)
-                BugFillLinkView()
-                Spacer()
-                Image(systemName: "chevron.forward").font(.system(size: 12))
-            }.padding().emptyBg().tap {
-                if(disable){
-                    return
-                }
-                self.isActive = true
+        HStack{
+            ItemImageView(icon: icon, iconColor: iconColor, label: label)
+            EmptyLinkView(destination: destination, isActive: $isActive)
+            BugFillLinkView()
+            Spacer()
+            Image(systemName: "chevron.forward").font(.system(size: 12))
+        }.cellStyle().emptyBg().tap {
+            if(disable){
+                return
             }
+            self.isActive = true
         }
 
     }

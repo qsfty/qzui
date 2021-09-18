@@ -20,7 +20,7 @@ struct ContentView: View {
     }
 }
 
-extension View {   
+extension View {
     public func stat(_ instance: Any) -> some View{
         self.onAppear{
             //统计开始
