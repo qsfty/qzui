@@ -35,7 +35,7 @@ public class MyEnvUtil {
         return !isDebug && isTestFlight
     }
 
-    public class func isPad() -> Bool {
+    public static func isPad() -> Bool {
         UIDevice.current.userInterfaceIdiom == .pad
     }
 

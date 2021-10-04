@@ -6,16 +6,18 @@ import SwiftUI
 
 public struct GroupView<Content: View>: View {
 
+    public var spacing: CGFloat
     public var content: Content
 
-    public init(@ViewBuilder content:@escaping () -> Content) {
+    public init(spacing: CGFloat = 0, @ViewBuilder content:@escaping () -> Content) {
+        self.spacing = spacing
         self.content = content()
     }
 
     public var body: some View {
-        VStack(spacing:0){
+        VStack(spacing:spacing){
             content
-        }.mainBg().cornerRadius(8).padding(.horizontal)
+        }.padding(.vertical, spacing).mainBg().cornerRadius(8).padding(.horizontal)
     }
 }
 

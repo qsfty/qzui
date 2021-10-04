@@ -11,16 +11,21 @@ import SwiftUI
 /**
  * 没有数据
  */
-public struct EmptyView: View {
+public struct EmptyDataView: View {
 
     var content: String
     var action: (() -> Void)? = nil
 
-     public var body: some View {
+    public init(content: String, action: (() -> ())? = nil) {
+        self.content = content
+        self.action = action
+    }
+
+    public var body: some View {
 
         VStack {
             Spacer()
-            Text(content).multilineTextAlignment(.center).lineSpacing(5).font(.system(size: 14)).foregroundColor(Color.gray).padding().fullWidth()
+            Text(content).multilineTextAlignment(.center).lineSpacing(5).font(.system(size: 14)).foregroundColor(Color.gray).padding().maxWidth()
             Spacer()
         }.padding().tap0{
             self.action?()

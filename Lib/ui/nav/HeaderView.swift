@@ -42,10 +42,12 @@ public struct HeaderView: View {
     var title: String
     var showTitle: Bool = true
     var backAction: (() -> Void)? = nil
+    var isSheet: Bool = false
 
-    public init(title: String, showTitle: Bool = true, backAction: (() -> ())? = nil) {
+    public init(title: String, showTitle: Bool = true,isSheet: Bool = false, backAction: (() -> ())? = nil) {
         self.title = title
         self.showTitle = showTitle
+        self.isSheet = isSheet
         self.backAction = backAction
     }
 
@@ -56,7 +58,7 @@ public struct HeaderView: View {
             Text(self.title).bold().opacity(self.showTitle ? 1: 0).animate()
             Spacer()
             FixLeftLink(action: nil)
-        }.height(50).padding(.top, MyUIUtil.getStatusBarHeight()).mainBg().zIndex(10)
+        }.height(50).padding(.top, self.isSheet ? 0 : MyUIUtil.getStatusBarHeight()).mainBg().zIndex(10)
     }
 }
 
@@ -113,7 +115,7 @@ public struct FixLeftLink: View {
                 Image(systemName: "chevron.backward")
             }
             Spacer()
-        }.width(50).padding(.leading, 20).emptyBg().tap0 {
+        }.width(50).padding(.leading).emptyBg().tap0 {
             self.action?()
         }
     }
@@ -126,11 +128,11 @@ public struct FixLeftTextLink: View {
     var action: (() -> Void)? = nil
      public var body: some View {
         HStack{
+            Spacer(minLength: 0)
             Text(label).fontSize(16).themeColor().padding(.vertical).tap0{
                 self.action?()
             }
-            Spacer(minLength: 0)
-        }.width(50).padding(.leading, 20).emptyBg().tap0 {
+        }.width(50).padding(.leading).emptyBg().tap0 {
             self.action?()
         }
     }
@@ -144,7 +146,7 @@ public struct FixLeftText: View {
         HStack{
             Text(label).fontSize(18).bold().primary().padding(.vertical)
             Spacer(minLength: 0)
-        }.padding(.leading, 20).emptyBg().tap0 {
+        }.padding(.leading).emptyBg().tap0 {
             self.action?()
         }
     }
@@ -158,18 +160,10 @@ public struct FixRightLink: View {
      public var body: some View {
         HStack{
             Spacer(minLength: 0)
-            if(label == "newTask"){
-                Image(systemName: "note.text.badge.plus").font(.system(size: 22)).themeColor().tap0{
-                    self.action?()
-                }
+            Text(label).fontSize(16).themeColor().padding(.vertical).tap0{
+                self.action?()
             }
-            else{
-                Text(label).fontSize(16).themeColor().padding(.vertical).tap0{
-                    self.action?()
-                }
-            }
-
-        }.width(50).padding(.trailing, 20)
+        }.width(50).padding(.trailing)
     }
 }
 
@@ -192,7 +186,7 @@ public struct FixRightIconLink: View {
             Image(systemName: icon).font(.system(size: 22)).color(iconColor).tap0{
                 self.action?()
             }
-        }.width(40).padding(.trailing, 20)
+        }.width(50).padding(.trailing)
     }
 }
 
@@ -210,9 +204,9 @@ public struct HeaderWithEditView: View {
             Spacer()
             Text(self.title).bold().opacity(self.showTitle ? 1: 0).animate()
             Spacer()
-            Text(editing ? "退出" : "编辑").fontSize(16).bold().tap {
+            FixRightLink(label: editing ? "退出" : "编辑").tap{
                 self.editing.toggle()
-            }.width(50).padding(.vertical).padding(.trailing, 8)
+            }
         }.height(50).padding(.top, MyUIUtil.getStatusBarHeight()).mainBg0()
     }
 }
@@ -234,13 +228,41 @@ public struct HeaderWithCompleteView: View {
     public var body: some View {
         HStack{
             FixLeftLink(action: self.backAction)
-            Spacer()
+            Spacer(minLength: 0)
             Text(self.title).bold().opacity(self.showTitle ? 1 : 0).primary().lineLimit(1).animate()
-            Spacer()
-            Text("完成").fontSize(16).bold().tap {
-                self.completeAction()
-            }.width(50).padding(.vertical).padding(.trailing, 8)
+            Spacer(minLength: 0)
+            FixRightLink(label: "完成"){
+                completeAction()
+            }
+        }.height(50).padding(.top, MyUIUtil.getStatusBarHeight()).mainBg()
+    }
+}
 
+
+
+public struct HeaderWithAddView: View {
+
+    var title: String
+    var showTitle: Bool = true
+    var backAction: (() -> Void)? = nil
+    var completeAction: () -> Void
+
+    public init(title: String, showTitle: Bool = true, backAction: (() -> ())?, completeAction: @escaping () -> ()) {
+        self.title = title
+        self.showTitle = showTitle
+        self.backAction = backAction
+        self.completeAction = completeAction
+    }
+
+    public var body: some View {
+        HStack{
+            FixLeftLink(action: self.backAction)
+            Spacer(minLength: 0)
+            Text(self.title).bold().opacity(self.showTitle ? 1 : 0).primary().lineLimit(1).animate()
+            Spacer(minLength: 0)
+            FixRightLink(label: "添加"){
+                completeAction()
+            }
         }.height(50).padding(.top, MyUIUtil.getStatusBarHeight()).mainBg()
     }
 }

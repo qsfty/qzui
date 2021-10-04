@@ -46,7 +46,7 @@ public struct RadioButtonView: View {
             if value {
                 Image(systemName: "checkmark.circle").themeColor()
             } else {
-                Image(systemName: "circle").foregroundColor(Color.gray.opacity(0.1))
+                Image(systemName: "circle").font(.system(size: 14, weight: .medium)).foregroundColor(Color.gray.opacity(0.5))
             }
         }.onChange(of: value){ v in
         }
@@ -80,3 +80,30 @@ public struct RadioFillNumberButton: View {
     }
 }
 
+
+public struct RadioSelectButton: View {
+
+    var label: String
+    var value: String
+    @Binding var selectValue: String
+
+    public init(label: String, value: String, selectValue: Binding<String>) {
+        self.label = label
+        self.value = value
+        self._selectValue = selectValue
+    }
+
+    public var body: some View {
+        Text(self.label).padding().mainBg().cornerRadius(6).selected(flag: value == self.selectValue).tap{
+            self.selectValue = value
+        }
+    }
+
+}
+
+extension View {
+
+    public func selected(flag: Bool) -> some View{
+        self.border(color: flag ? Color.theme : Color.mainBg, radius: 6, lineWidth: 2).padding(2)
+    }
+}

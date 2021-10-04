@@ -61,12 +61,17 @@ public struct LongOkButton: View {
 
     public var body: some View {
 
-        Text(label).fontSize(14)
-                .width(MyUIUtil.fullWidth() - horizontalPadding * 2)
+        HStack{
+            Spacer()
+            Text(label).fontSize(14)
+            Spacer()
+        }
+                .padding(.vertical, verticalGap)
                 .height(45)
                 .theme()
-                .cornerRadius(6).tap(radius: 6, action: action)
-                .padding(.vertical, verticalPadding)
+                .cornerRadius(6)
+                .tap(radius: 6, action: action)
+                .padding(.horizontal, horizontalPadding)
 
     }
 }
@@ -88,10 +93,48 @@ public struct LongCancelButton: View {
 
     public var body: some View {
 
-        Text(label).fontSize(14)
-                .width(MyUIUtil.fullWidth() - padding * 2)
+        HStack{
+            Spacer()
+            Text(label).fontSize(14)
+            Spacer()
+        }
+                .padding(.vertical, verticalGap)
                 .height(45)
                 .bg(bg).color(Color.primary)
-                .cornerRadius(6).tap(radius: 6, action: action)
+                .cornerRadius(6)
+                .tap(radius: 6, action: action)
+                .padding(.horizontal, padding)
+    }
+}
+
+
+
+public struct LongDeleteButton: View {
+
+    public var label: String = ""
+    public var padding: CGFloat = 15
+    public var bg: Color = Color.gray
+    public var action: () -> Void
+
+    public init(label: String, padding: CGFloat = 15,bg: Color = .delete, action: @escaping () -> ()) {
+        self.label = label
+        self.padding = padding
+        self.bg = bg
+        self.action = action
+    }
+
+    public var body: some View {
+
+        HStack{
+            Spacer()
+            Text(label).fontSize(14).color(.white)
+            Spacer()
+        }
+                .padding(.vertical, verticalGap)
+                .height(45)
+                .bg(bg).color(Color.primary)
+                .cornerRadius(6)
+                .tap(radius: 6, action: action)
+                .padding(.horizontal, padding)
     }
 }

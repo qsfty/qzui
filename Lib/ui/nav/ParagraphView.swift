@@ -10,10 +10,14 @@ public struct ParagraphView: View {
 
     var content: String
     var lineHeight: Int = 0
+    var fontSize: CGFloat = 14
+    var color: Color
 
-    public init(_ content: String, style: LineSize = .base) {
+    public init(_ content: String, style: LineSize = .base, fontSize: CGFloat = 14,color: Color = .primary) {
         self.content = content
         self.lineHeight = style.rawValue
+        self.fontSize = fontSize
+        self.color = color
     }
 
     public static func  compress(_ content: String) -> ParagraphView {
@@ -26,7 +30,7 @@ public struct ParagraphView: View {
 
      public var body: some View {
         HStack{
-            Text(content).fontSize(14).lineSpacing(self.lineHeight.toFloat())
+            Text(content).fontSize(fontSize).color(color).lineSpacing(self.lineHeight.toFloat()).fixedSize(horizontal: false, vertical: true)
             Spacer(minLength: 0)
         }.padding(.horizontal).padding(.vertical, self.lineHeight.toFloat())
     }

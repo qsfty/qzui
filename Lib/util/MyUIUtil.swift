@@ -88,8 +88,6 @@ public struct MyUIUtil {
         UIScreen.main.bounds.height / 3
     }
 
-
-
     public static func  gapFromTop(height: CGFloat) -> CGFloat {
         fullHeight() - height
     }
@@ -97,9 +95,6 @@ public struct MyUIUtil {
     public static func  fullHeightWithStatusBar() -> CGFloat {
         fullHeight() + getStatusBarHeight()
     }
-
-
-
 
     public static func  getScreenBottomHeight() -> CGFloat {
         if(isIphoneXSeries()){

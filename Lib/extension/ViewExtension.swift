@@ -23,6 +23,10 @@ extension Text{
 
 extension View {
 
+    public func fontSize(_ fontSize: CGFloat) -> some View{
+        self.font(.system(size: fontSize))
+    }
+
     public func color(_ color: String) -> some View {
         self.modifier(ColorModifier(color))
     }
@@ -160,11 +164,15 @@ extension View {
         self.foregroundColor(Color.white).themeBg()
     }
 
+    public func deleteTheme() -> some View {
+        self.foregroundColor(Color.white).bg(.delete)
+    }
+
     public func test() -> some View{
         self.background(makeRandomColor().opacity(0.2))
     }
-    public func test2() -> some View{
-        self.overlay(makeRandomColor().opacity(0.2))
+    public func test2(_ flag: Bool = true) -> some View{
+        self.overlay(flag ? makeRandomColor().opacity(0.2) : Color.clear)
     }
 
     public func border(color: Color, radius: CGFloat = 3,  lineWidth: CGFloat = 0.5) -> some View {
@@ -312,6 +320,26 @@ extension View {
 
     public func paddingBottomTabBar() -> some View {
         self.padding(.bottom, MyUIUtil.getTabbarHeight())
+    }
+
+    public func paddingTop() -> some View {
+        self.padding(.top)
+    }
+
+    public func paddingVertical() -> some View {
+        self.padding(.vertical)
+    }
+
+    public func paddingLeading() -> some View {
+        self.padding(.leading)
+    }
+
+    public func paddingTrailing() -> some View {
+        self.padding(.trailing)
+    }
+
+    public func paddingBottom() -> some View {
+        self.padding(.bottom)
     }
 
     public func selfScreen() -> some View {

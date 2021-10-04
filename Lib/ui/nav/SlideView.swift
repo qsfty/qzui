@@ -7,7 +7,7 @@ import QzLib
 /**
  * 左滑
  */
-public struct SlideRow<Content:View>: View {
+public struct SlideDeleteRow<Content:View>: View {
 
     var content: Content
 
@@ -21,13 +21,11 @@ public struct SlideRow<Content:View>: View {
 
     @State var isDelete:Bool = false
 
-    var onEdit: () -> Void
     var onDelete: () -> Void
 
-    init(id: String, activeId: Binding<String>,onEdit:@escaping () -> Void, onDelete:@escaping () -> Void, @ViewBuilder content: () -> Content){
+    public init(id: String, activeId: Binding<String>, onDelete:@escaping () -> Void, @ViewBuilder content: () -> Content){
         self.id = id
         self._activeId = activeId
-        self.onEdit = onEdit
         self.onDelete = onDelete
         self.content = content()
     }
@@ -45,9 +43,6 @@ public struct SlideRow<Content:View>: View {
 
             if(!isDelete){
                 HStack(spacing: 0){
-                    Text("编辑").fontSize(12).opacity(showText() ? 1 : 0).color(Color.white).width(sliderWidth()).maxHeight().bg(Color.blue).animate().tap{
-                        self.onEdit()
-                    }
                     Text("删除").fontSize(12).opacity(showText() ? 1 : 0).color(Color.white).width(sliderWidth()).maxHeight().bg(Color.red).animate().tap{
                         self.isDelete = true
                     }
@@ -65,7 +60,6 @@ public struct SlideRow<Content:View>: View {
                     .onChanged{ value in
                         let gapX = value.translation.width
                         let gapY = value.translation.height
-
 
                         let absX = gapX.toAbs()
                         let absY = gapY.toAbs()

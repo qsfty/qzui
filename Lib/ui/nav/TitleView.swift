@@ -3,38 +3,22 @@
 //
 
 import SwiftUI
+import QzLib
 
 public struct TitleView: View {
 
     var title: String
 
-    init(_ title: String){
+    public init(_ title: String) {
         self.title = title
     }
 
-     public var body: some View {
-        HStack{
+    public var body: some View {
+        HStack {
             Spacer()
             Text(self.title).foregroundColor(Color("primary"))
             Spacer()
-        }.padding().padding(.bottom,20)
-    }
-}
-
-
-public struct LeadingTitleView: View {
-
-    var title: String
-
-    init(_ title: String){
-        self.title = title
-    }
-
-     public var body: some View {
-        HStack{
-            Text(self.title).bold().fontSize(16).primary()
-            Spacer()
-        }.padding().padding(.bottom,10)
+        }.padding().padding(.bottom, 20)
     }
 }
 
@@ -46,7 +30,7 @@ public struct LeadingTextView: View {
     var color: Color = Color.primary
     var bold: Bool = false
 
-    public init(title: String, fontSize: CGFloat = 14, color: Color = Color.primary, bold: Bool = false) {
+    public init(_ title: String, fontSize: CGFloat = 14, color: Color = Color.primary, bold: Bool = false) {
         self.title = title
         self.fontSize = fontSize
         self.color = color
@@ -54,9 +38,104 @@ public struct LeadingTextView: View {
     }
 
     public var body: some View {
-        HStack{
+        HStack {
             Text(self.title).fontWeight(bold ? .bold : .none).fontSize(fontSize).color(color)
             Spacer()
-        }.padding(.horizontal)
+        }.padding(.vertical, 5).padding(.horizontal)
+    }
+}
+
+
+
+public struct LeadingOpenTextView<Content: View>: View {
+
+    var title: String
+    var padding: CGFloat = 5
+    var fontSize: CGFloat = 14
+    var color: Color = Color.primary
+    var bold: Bool = false
+    @State var open = false
+    var content: Content
+
+    public init(_ title: String,padding: CGFloat = 5, fontSize: CGFloat = 14, color: Color = Color.primary, bold: Bool = false, @ViewBuilder content: () -> Content) {
+        self.title = title
+        self.padding = padding
+        self.fontSize = fontSize
+        self.color = color
+        self.bold = bold
+        self.content = content()
+    }
+
+    public var body: some View {
+        VStack{
+            HStack(alignment: .center) {
+                Text(self.title).fontWeight(bold ? .bold : .none).fontSize(fontSize).color(color)
+                Spacer()
+                Image(systemName:"chevron.right").fontSize(14).rotationEffect(.degrees(open ? 90 : 0))
+            }.padding(.vertical, padding).padding(.horizontal).emptyBg().onTapGesture{
+                MyTimerUtil.animation2{
+                    self.open.toggle()
+                }
+            }
+            if(open){
+                content
+            }
+        }
+
+    }
+}
+
+
+public struct LeadingTextWithAddView: View {
+
+    var title: String
+    var fontSize: CGFloat = 14
+    var color: Color = Color.primary
+    var bold: Bool = false
+    var action: () -> Void
+
+    public init(_ title: String,
+                fontSize: CGFloat = 14,
+                color: Color = Color.primary,
+                bold: Bool = false,
+                action: @escaping () -> Void) {
+        self.title = title
+        self.fontSize = fontSize
+        self.color = color
+        self.bold = bold
+        self.action = action
+    }
+
+    public var body: some View {
+        HStack {
+            Text(self.title).fontWeight(bold ? .bold : .none).fontSize(fontSize).color(color)
+            Spacer()
+            Image(systemName: "plus").fontSize(14).tap {
+                self.action()
+            }
+        }.padding(.vertical, 5).padding(.horizontal)
+    }
+}
+
+
+public struct LeadingHintTextView: View {
+
+    var title: String
+    var fontSize: CGFloat = 14
+    var color: Color = Color.gray
+    var bold: Bool = false
+
+    public init(_ title: String, fontSize: CGFloat = 14, color: Color = Color.gray, bold: Bool = false) {
+        self.title = title
+        self.fontSize = fontSize
+        self.color = color
+        self.bold = bold
+    }
+
+    public var body: some View {
+        HStack {
+            Text(self.title).fontWeight(bold ? .bold : .none).fontSize(fontSize).color(color)
+            Spacer()
+        }.padding(.vertical, 5).padding(.horizontal)
     }
 }

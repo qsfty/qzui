@@ -16,7 +16,7 @@ public struct SwitchButton : View {
     @State var x: CGFloat = 0
      public var body: some View {
 
-        let circleWidth:CGFloat = 20
+        let circleWidth:CGFloat = 15
         let wrapperWidth:CGFloat = circleWidth * 2
         let wrapperHeight:CGFloat = circleWidth + 4
         let invalidPadding:CGFloat = 2
@@ -56,11 +56,13 @@ public struct SwitchActionButton : View {
             Circle().width(circleWidth).foregroundColor(Color("switchCircleBg")).zIndex(10).offset(x: x)
         }.emptyBg().tap0{
             MyTimerUtil.animation2{
-                self.x = !self.value ? validPadding : invalidPadding
+//                self.x = !self.value ? validPadding : invalidPadding
                 self.action()
             }
         }.onAppear{
             self.x = self.value ? validPadding : invalidPadding
+        }.onChange(of: value) { v in
+            self.x =  v ? validPadding : invalidPadding
         }
 
     }

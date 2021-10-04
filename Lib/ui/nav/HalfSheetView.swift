@@ -23,6 +23,7 @@ public struct HalfSheetView<Content: View>: View {
     @State var lastOffset: CGFloat = 0
     //是否需要确定按钮
     var title: String = ""
+    var tag: String = ""
 
     var height: CGFloat = 0.6
 
@@ -35,8 +36,9 @@ public struct HalfSheetView<Content: View>: View {
     var cancel: (() -> Void)? = nil
     @State var end: Bool = false
 
-    public init(title: String = "",shown: Binding<Bool>, height: CGFloat = 300, rightText: String = "", rightAction: (() -> Void)? = nil, action:@escaping (Bool) -> Void, cancel: (() -> Void)? = nil,  content: () -> Content){
+    public init(title: String = "", tag: String = "",shown: Binding<Bool>, height: CGFloat = 300, rightText: String = "", rightAction: (() -> Void)? = nil, action:@escaping (Bool) -> Void, cancel: (() -> Void)? = nil,  content: () -> Content){
         self.title = title
+        self.tag = tag
         self.height = height
         self._shown = shown
         self.action = action
@@ -57,6 +59,9 @@ public struct HalfSheetView<Content: View>: View {
                     HStack{
                         if(title != ""){
                             Text(title).bold()
+                            if(tag != ""){
+                                Text(tag).fontSize(12).padding(2).deleteTheme().cornerRadius(4).padding(.trailing, 5)
+                            }
                         }
                         Spacer()
                         if(title == ""){
