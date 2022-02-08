@@ -8,7 +8,7 @@ import QzLib
 
 public struct TipView : View {
 
-    var always: Bool = false
+    var always: Bool = true
     var padding: CGFloat = 15
     var top: Bool = true
     var bottom: Bool = false
@@ -16,7 +16,7 @@ public struct TipView : View {
 
     @State var show: Bool = false
 
-    public init(tip: String, always: Bool = false, padding: CGFloat = 15, top: Bool = true, bottom: Bool = false, tips: [String] = []) {
+    public init(tip: String, always: Bool = true, padding: CGFloat = 15, top: Bool = true, bottom: Bool = false, tips: [String] = []) {
         self.always = always
         self.padding = padding
         self.top = top

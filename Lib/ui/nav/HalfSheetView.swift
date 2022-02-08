@@ -27,7 +27,6 @@ public struct HalfSheetView<Content: View>: View {
 
     var height: CGFloat = 0.6
 
-    var action: (Bool) -> Void
     var content: Content
 
     var rightText: String = ""
@@ -36,12 +35,11 @@ public struct HalfSheetView<Content: View>: View {
     var cancel: (() -> Void)? = nil
     @State var end: Bool = false
 
-    public init(title: String = "", tag: String = "",shown: Binding<Bool>, height: CGFloat = 300, rightText: String = "", rightAction: (() -> Void)? = nil, action:@escaping (Bool) -> Void, cancel: (() -> Void)? = nil,  content: () -> Content){
+    public init(title: String = "", tag: String = "",shown: Binding<Bool>, height: CGFloat = 300, rightText: String = "", rightAction: (() -> Void)? = nil, cancel: (() -> Void)? = nil,  content: () -> Content){
         self.title = title
         self.tag = tag
         self.height = height
         self._shown = shown
-        self.action = action
         self.rightText = rightText
         self.rightAction = rightAction
         self.cancel = cancel
@@ -100,7 +98,7 @@ public struct HalfSheetView<Content: View>: View {
                                     }
                                 }
                             })
-                    content.padding(.bottom, MyUIUtil.getTabbarHeight())
+                    content.height(height - 80).padding(.bottom, MyUIUtil.getTabbarHeight())
                     Spacer()
                 }
                         .mainBg().cornerRadius(10).offset(y: self.shown ? (restDialogHeight() + self.moveOffset) : MyUIUtil.fullHeight())

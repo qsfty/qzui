@@ -26,7 +26,7 @@ public struct ToastView: View {
                     .padding(10)
                     .padding(.horizontal, 20)
                     .background(Color(toastInfo.success ? "gray" : "error"))
-                    .cornerRadius(20)
+                    .cornerRadius(6)
                     .foregroundColor(Color.white).onAppear{
                         MyTimerUtil.sleep(toastInfo.message.count < 8 ? 1 : 2) {
                             toastInfo.show.toggle()

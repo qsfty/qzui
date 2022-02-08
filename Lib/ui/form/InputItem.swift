@@ -49,16 +49,191 @@ public struct InputItemView: View, Equatable {
             ItemImageView(label: self.label).tap0{
                 UIApplication.shared.endEditing()
             }
-            TextField(placeholder, text: $value,  onEditingChanged: { v in
-                self.focusAction?(v)
-            }).accentColor(Color.blue).multilineTextAlignment(.trailing)
-                    .keyboardType(keyboardType)
-                    .font(.system(size: 14))
+
+            ZStack{
+                if(value == ""){
+                    Text(placeholder).fontSize(14).placeholder().frame(maxWidth: .infinity, alignment: .trailing)
+                }
+                TextField("", text: $value,  onEditingChanged: { v in
+                    self.focusAction?(v)
+                })
+                        .accentColor(Color.theme).multilineTextAlignment(.trailing)
+                        .keyboardType(keyboardType)
+                        .font(.system(size: 14))
+            }
+
+
         }.cellStyle()
     }
 }
 
 
+
+
+public struct TimeInputItemView: View, Equatable {
+
+    public static func  == (lhs: TimeInputItemView, rhs: TimeInputItemView) -> Bool {
+        lhs.value == rhs.value
+    }
+
+    var label: String
+    var placeholder: String = ""
+    @Binding var value: String
+
+    @EnvironmentObject var dialogManager: DialogManager
+
+    public init(label: String, placeholder: String = "", value: Binding<String>) {
+        self.label = label
+        self.placeholder = placeholder == "" ? "请填写\(label)" : placeholder
+        self._value = value
+    }
+
+    public var body: some View {
+        return HStack{
+            ItemImageView(label: self.label).tap0{
+                UIApplication.shared.endEditing()
+            }
+            Group{
+                if(value == ""){
+                    Text(placeholder).fontSize(14).placeholder().frame(maxWidth: .infinity, alignment: .trailing)
+                }
+                else{
+                    Text(value).frame(maxWidth: .infinity, alignment: .trailing)
+                }
+            }.emptyBg().tap{
+                        UIApplication.shared.endEditing()
+                        dialogManager.showTimeChoose(title: placeholder, time: value){ v in
+                            self.value = v
+                        }
+                    }
+        }.cellStyle()
+    }
+}
+
+
+public struct NumberInputItemView: View, Equatable {
+
+    public static func  == (lhs: NumberInputItemView, rhs: NumberInputItemView) -> Bool {
+        lhs.value == rhs.value
+    }
+
+    var label: String
+    var placeholder: String = ""
+    @Binding var value: String
+
+    @EnvironmentObject var dialogManager: DialogManager
+
+    public init(label: String, placeholder: String = "", value: Binding<String>) {
+        self.label = label
+        self.placeholder = placeholder == "" ? "请填写\(label)" : placeholder
+        self._value = value
+    }
+
+    public var body: some View {
+        return HStack{
+            ItemImageView(label: self.label).tap0{
+                UIApplication.shared.endEditing()
+            }
+            Group{
+                if(value == ""){
+                    Text(placeholder).fontSize(14).placeholder().frame(maxWidth: .infinity, alignment: .trailing)
+                }
+                else{
+                    Text(value).frame(maxWidth: .infinity, alignment: .trailing)
+                }
+            }.emptyBg().tap{
+                        UIApplication.shared.endEditing()
+                        dialogManager.showNumberChoose(title: placeholder, value: value){ v in
+                            self.value = v
+                        }
+                    }
+        }.cellStyle()
+    }
+}
+
+
+
+
+public struct PreDefineInputItemView: View, Equatable {
+
+    public static func  == (lhs: PreDefineInputItemView, rhs: PreDefineInputItemView) -> Bool {
+        lhs.value == rhs.value && lhs.defineData == rhs.defineData
+    }
+
+    var label: String
+    var placeholder: String = ""
+    @Binding var value: String
+    var defineData: [String] = []
+
+    @EnvironmentObject var dialogManager: DialogManager
+
+    public init(label: String, placeholder: String = "", value: Binding<String>, defineData: [String] = []) {
+        self.label = label
+        self.placeholder = placeholder == "" ? "请填写\(label)" : placeholder
+        self._value = value
+        self.defineData = defineData
+    }
+
+    public var body: some View {
+         HStack{
+            ItemImageView(label: self.label).tap0{
+                UIApplication.shared.endEditing()
+            }
+            Group{
+                if(value == ""){
+                    Text(placeholder).fontSize(14).placeholder().frame(maxWidth: .infinity, alignment: .trailing)
+                }
+                else{
+                    Text(value).frame(maxWidth: .infinity, alignment: .trailing)
+                }
+            }.emptyBg().tap{
+                UIApplication.shared.endEditing()
+                ps("define data", defineData)
+                dialogManager.showPreDefineChoose(title: placeholder, value: value, defineData: defineData){ v in
+                    self.value = v
+                }
+            }
+        }.cellStyle()
+    }
+}
+
+public struct SelfInputItemView: View, Equatable {
+
+    public static func  == (lhs: SelfInputItemView, rhs: SelfInputItemView) -> Bool {
+        lhs.value == rhs.value
+    }
+
+    var label: String
+    var placeholder: String = ""
+    @Binding var value: String
+
+    var action: () -> Void
+
+    public init(label: String, placeholder: String = "", value: Binding<String>, action:@escaping () -> Void) {
+        self.label = label
+        self.placeholder = placeholder == "" ? "请填写\(label)" : placeholder
+        self._value = value
+        self.action = action
+    }
+
+    public var body: some View {
+        return HStack{
+            ItemImageView(label: self.label).tap0{
+                UIApplication.shared.endEditing()
+            }
+            Group{
+                if(value == ""){
+                    Text(placeholder).fontSize(14).placeholder().frame(maxWidth: .infinity, alignment: .trailing)
+                }
+                else{
+                    Text(value).frame(maxWidth: .infinity, alignment: .trailing)
+                }
+            }.emptyBg().tap{
+                        self.action()
+                    }
+        }.cellStyle()
+    }
+}
 
 
 public struct PasswordView: View, Equatable {

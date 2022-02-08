@@ -25,6 +25,34 @@ public struct GroupView<Content: View>: View {
 }
 
 
+public struct GroupTitleView<Content: View>: View {
+
+    public var title: String
+    public var spacing: CGFloat
+    public var content: Content
+    public var mainBg: Color
+
+    public init(title: String, spacing: CGFloat = 0, mainBg: Color = Color.mainBg, @ViewBuilder content:@escaping () -> Content) {
+        self.title = title
+        self.mainBg = mainBg
+        self.spacing = spacing
+        self.content = content()
+    }
+
+    public var body: some View {
+        VStack(spacing:spacing){
+            HStack{
+                Text(title).fontSize(12).pdh(6).pdv(2).color(Color.third).bg(Color.gray.opacity(0.1))
+                Spacer()
+            }.pdb(8)
+            content
+        }.padding(.vertical, spacing).bg(mainBg).cornerRadius(8)
+        .padding(.horizontal, 15)
+
+    }
+}
+
+
 public struct Triangle: Shape {
 
     var size: CGFloat = 10

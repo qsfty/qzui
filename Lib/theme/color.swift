@@ -46,8 +46,10 @@ extension Color {
     public static let switchValidBg = Color("switchValidBg")
     public static let second = Color("second")
     public static let third = Color("third")
+    public static let placeholder = Color("placeholder")
     public static let shadow = Color("shadow")
     public static let mainBg0 = Color("mainBg0")
+    public static let more = Color("more")
     public static let mainBg = Color("mainBg")
     public static let mainBg1 = Color("mainBg1")
     public static let themeFg = Color.white

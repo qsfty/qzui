@@ -63,6 +63,10 @@ public struct MyUIUtil {
         fullWindowWidth()
     }
 
+    public static func  fullDialogWidth() -> CGFloat{
+        fullWidth() > 800 ? 800 : fullWidth()
+    }
+
     public static func  fullHeight() -> CGFloat {
         fullWindowHeight()
     }
@@ -105,7 +109,6 @@ public struct MyUIUtil {
         }
         return 0
     }
-
     public static func  getTabbarHeight() -> CGFloat {
         50.toFloat() + getScreenBottomHeight()
     }

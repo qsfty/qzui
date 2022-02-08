@@ -16,7 +16,7 @@ public struct EmptyDataView: View {
     var content: String
     var action: (() -> Void)? = nil
 
-    public init(content: String, action: (() -> ())? = nil) {
+    public init(_ content: String, action: (() -> ())? = nil) {
         self.content = content
         self.action = action
     }
@@ -25,9 +25,10 @@ public struct EmptyDataView: View {
 
         VStack {
             Spacer()
+            Image(systemName: "camera.metering.none").fontSize(20).color(Color.gray.opacity(0.2))
             Text(content).multilineTextAlignment(.center).lineSpacing(5).font(.system(size: 14)).foregroundColor(Color.gray).padding().maxWidth()
             Spacer()
-        }.padding().tap0{
+        }.pd().emptyBg().tap0{
             self.action?()
         }
     }

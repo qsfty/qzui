@@ -10,22 +10,15 @@ import SwiftUI
 public struct Input: View {
 
     public var label: String
-    @Binding var value: String
-    @State var focused: Bool = false
-    var onCommit:() -> Void
+    @Binding public var value: String
+
+    public init(label: String, value: Binding<String>) {
+        self.label = label
+        self._value = value
+    }
 
     public var body: some View {
-        ZStack(alignment: Alignment.trailing) {
-            TextField(label, text: $value, onEditingChanged: { (editingChanged) in
-                self.focused = editingChanged
-            }, onCommit: onCommit).font(.system(size: 14)).frame(width:MyUIUtil.fullWidth() - 80,height: 20).padding(5).mainBg().cornerRadius(6)
-
-            if(self.focused && self.value != ""){
-                Image(systemName: "xmark.circle.fill").foregroundColor(Color.gray).padding(.trailing, 5).onTapGesture {
-                    self.value = ""
-                }.mainBg()
-            }
-        }
+        TextField(label, text: $value).font(.system(size: 14)).maxWidth().padding().mainBg().cornerRadius(6)
     }
 }
 

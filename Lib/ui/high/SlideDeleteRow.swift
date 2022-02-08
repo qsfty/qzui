@@ -57,7 +57,7 @@ public struct SlideDeleteRow<Content:View>: View {
                         self.onDelete()
                     }
                 }
-            }
+            }.cornerRadius(6).frame(width: -self.scrollX).offset(x: 2)
 
             content.zIndex(101).offset(x: scrollX).highPriorityGesture(DragGesture(minimumDistance: 20, coordinateSpace: .local).updating($isDragging) { (value, state, _) in
                         state = true
@@ -111,7 +111,7 @@ public struct SlideDeleteRow<Content:View>: View {
                 self.scrollX = 0
                 self.beginX = 0
                 self.isDelete = false
-                self.activeId = "-1"
+                self.activeId = ""
             }
         }
 
