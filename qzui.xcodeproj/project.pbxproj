@@ -12,6 +12,7 @@
 		12577107D165EF1E8E82381F /* SelectDO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125778285980642E8C189138 /* SelectDO.swift */; };
 		1257716580C2429B17A10B67 /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12577CBB378FCBA87337F2CC /* Input.swift */; };
 		1257724595CB728A6CC6CAC3 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1257748C31F4CD24F56E5FFB /* RoundedButton.swift */; };
+		1257724658249A6B6C8A1E01 /* AppVersionCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125773602D4190A054815C70 /* AppVersionCache.swift */; };
 		125773123838F04FBE23866F /* PagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125778AAD1424D9AC4309845 /* PagerView.swift */; };
 		12577320B96C154AC08E61AB /* GroupForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125770D2FE615BEEEA491BC7 /* GroupForm.swift */; };
 		125773535A97B04268340BA7 /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1257708C3C173E644BE4CE4D /* Switch.swift */; };
@@ -57,6 +58,7 @@
 		125770D2FE615BEEEA491BC7 /* GroupForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupForm.swift; sourceTree = "<group>"; };
 		1257712F2AB84B7B84FC680C /* ColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		12577195E262028F7B3D9E7C /* LoadingBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingBarView.swift; sourceTree = "<group>"; };
+		125773602D4190A054815C70 /* AppVersionCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppVersionCache.swift; sourceTree = "<group>"; };
 		1257737C89270666B98BF19D /* CrashReporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrashReporter.swift; sourceTree = "<group>"; };
 		125773B0B871A3B43739DAFA /* ToastDO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastDO.swift; sourceTree = "<group>"; };
 		125773B8869AE45C5527F40C /* NavigationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationExtension.swift; sourceTree = "<group>"; };
@@ -150,6 +152,14 @@
 				12577CE82A3A15D19B7F81DD /* MyDatePicker.swift */,
 			);
 			path = form;
+			sourceTree = "<group>";
+		};
+		12577A4C3D0D30E44BEAD7E8 /* cache */ = {
+			isa = PBXGroup;
+			children = (
+				125773602D4190A054815C70 /* AppVersionCache.swift */,
+			);
+			path = cache;
 			sourceTree = "<group>";
 		};
 		12577CFAE55FA970833FA93C /* model */ = {
@@ -250,6 +260,7 @@
 				12577F5E46B796D67FAFBEEB /* MyEnvUtil.swift */,
 				1257792DBB42379C9D7858AD /* MyUIUtil.swift */,
 				1257745A9C29C738010E40B2 /* plugins */,
+				12577A4C3D0D30E44BEAD7E8 /* cache */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -456,6 +467,7 @@
 				125779FA5FCB76031C912E37 /* MyUIUtil.swift in Sources */,
 				1257799575227CE7DEFF688C /* CrashHelper.swift in Sources */,
 				12577A66A085840A7DEC308C /* CrashReporter.swift in Sources */,
+				1257724658249A6B6C8A1E01 /* AppVersionCache.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

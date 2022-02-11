@@ -42,8 +42,7 @@ public struct SortedGrid<Content: View, Item: Identifiable & Equatable>: View {
         LazyVGrid(columns: columns) {
             ForEach(items) { item in
                 content(item)
-//                        .overlay(Color.clear)
-                        .contentShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+//                        .overlay(draggingItem == item && hasChangedLocation ? Color.white.opacity(0.8) : Color.clear)
                         .onDrag {
                             draggingItem = item
                             return NSItemProvider(object: "\(item.id)" as NSString)
@@ -62,10 +61,7 @@ public struct SortedGrid<Content: View, Item: Identifiable & Equatable>: View {
                                 }
                         )
             }
-        }.onAppear{
-
         }
-
     }
 
 }
