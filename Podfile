@@ -17,7 +17,7 @@ target 'qzui' do
   #pod 'SDWebImageSwiftUI'
   # Pods for course
 
-  pod 'QzUI', :path => '/Users/qiangzi/Work/2021/ios/lib/qzui'
+  pod 'QzUI', :path => '/Users/qiangzi/Work/2022/pro_duty/ios/lib/qzui'
 
 end
 

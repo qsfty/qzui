@@ -30,10 +30,9 @@ s.pod_target_xcconfig = {
 }
 
 s.weak_frameworks = 'SwiftUI', 'Combine'
-s.dependency 'QzLib', '~> 1.0.5'
+s.dependency 'QzLib', '~> 1.1.2'
 
 s.dependency 'Alamofire', '~> 5.4.1'
 s.dependency 'CleanJSON', '~> 1.0.8'
-//# s.dependency 'QzLib', '~> 1.0.4'
 s.swift_version = '5.2'
 end
