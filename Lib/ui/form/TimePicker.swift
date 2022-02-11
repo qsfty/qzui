@@ -2,49 +2,12 @@
 // Created by 强子 on 2021/10/3.
 //
 
+import QzLib
 import SwiftUI
 
 public var allIntervalTimes: [SelectDO] {
     var result: [SelectDO] = []
     for i in 0..<24 {
-        for j in 0..<60 {
-            if(j % 5 == 0){
-                result.append(SelectDO(label: "\(getTwo(x: i)):\(getTwo(x: j))", value: "\(getTwo(x: i)):\(getTwo(x: j))"))
-            }
-        }
-    }
-    return result
-}
-
-
-public var morningIntervalTimes: [SelectDO] {
-    var result: [SelectDO] = []
-    for i in 5..<14 {
-        for j in 0..<60 {
-            if(j % 5 == 0){
-                result.append(SelectDO(label: "\(getTwo(x: i)):\(getTwo(x: j))", value: "\(getTwo(x: i)):\(getTwo(x: j))"))
-            }
-        }
-    }
-    return result
-}
-
-
-public var afternoonIntervalTimes: [SelectDO] {
-    var result: [SelectDO] = []
-    for i in 12..<21 {
-        for j in 0..<60 {
-            if(j % 5 == 0){
-                result.append(SelectDO(label: "\(getTwo(x: i)):\(getTwo(x: j))", value: "\(getTwo(x: i)):\(getTwo(x: j))"))
-            }
-        }
-    }
-    return result
-}
-
-public var eveningIntervalTimes: [SelectDO]  {
-    var result: [SelectDO] = []
-    for i in 17..<24 {
         for j in 0..<60 {
             if(j % 5 == 0){
                 result.append(SelectDO(label: "\(getTwo(x: i)):\(getTwo(x: j))", value: "\(getTwo(x: i)):\(getTwo(x: j))"))
@@ -103,18 +66,7 @@ public struct PickTimeView : View{
                 Text(item.label).tag(item.value)
             }
         }.pickerStyle(WheelPickerStyle()).onAppear{
-            if(group == "morning"){
-                self.options = morningIntervalTimes
-            }
-            else if(group == "afternoon"){
-                self.options = afternoonIntervalTimes
-            }
-            else if(group == "evening"){
-                self.options = eveningIntervalTimes
-            }
-            else{
-                self.options = allIntervalTimes
-            }
+            self.options = allIntervalTimes
         }
     }
 }

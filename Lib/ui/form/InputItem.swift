@@ -5,7 +5,7 @@
 import SwiftUI
 import QzLib
 
-let verticalGap:CGFloat = 15
+public var verticalGap:CGFloat = 15
 
 public struct ItemImageView: View {
     public var label: String
@@ -54,9 +54,102 @@ public struct InputItemView: View, Equatable {
             }).accentColor(Color.blue).multilineTextAlignment(.trailing)
                     .keyboardType(keyboardType)
                     .font(.system(size: 14))
-        }.cellStyle().mainBg()
+        }.cellStyle()
     }
 }
+
+
+
+
+public struct PasswordView: View, Equatable {
+
+    public static func == (lhs: PasswordView, rhs: PasswordView) -> Bool {
+        lhs.value == rhs.value
+    }
+
+    var label: String
+    var placeholder: String = ""
+    @Binding var value: String
+    var keyboardType: UIKeyboardType = .default
+    var focusAction: ((Bool) -> Void)? = nil
+
+    public init(label: String, placeholder: String = "", value: Binding<String>, keyboardType: UIKeyboardType = .default, focusAction: ((Bool) -> ())? = nil) {
+        self.label = label
+        self.placeholder = placeholder == "" ? "请填写\(label)" : placeholder
+        self._value = value
+        self.keyboardType = keyboardType
+        self.focusAction = focusAction
+    }
+
+    public var body: some View {
+        return HStack{
+            ItemImageView(label: self.label).tap0{
+                UIApplication.shared.endEditing()
+            }
+            SecureField(placeholder, text: $value).accentColor(Color.blue).multilineTextAlignment(.trailing)
+                    .keyboardType(keyboardType)
+                    .font(.system(size: 14))
+        }.cellStyle()
+    }
+}
+
+
+public struct InlineTextAreaView: View, Equatable {
+
+    public static func  == (lhs: InlineTextAreaView, rhs: InlineTextAreaView) -> Bool {
+        lhs.value == rhs.value
+    }
+
+    var label: String
+    var placeholder: String = ""
+    @Binding var value: String
+    var focusAction: ((Bool) -> Void)? = nil
+
+    public init(label: String, placeholder: String = "", value: Binding<String>, keyboardType: UIKeyboardType = .default, focusAction: ((Bool) -> ())? = nil) {
+        self.label = label
+        self.placeholder = placeholder == "" ? "请填写\(label)" : placeholder
+        self._value = value
+        self.focusAction = focusAction
+    }
+
+    public var body: some View {
+        return HStack(alignment: .top){
+            ItemImageView(label: self.label).tap0{
+                UIApplication.shared.endEditing()
+            }
+
+            TextEditor(text: $value).accentColor(Color.blue).multilineTextAlignment(.trailing)
+                    .font(.system(size: 14))
+                    .height(100)
+        }.cellStyle()
+    }
+}
+
+
+public struct TextAreaView: View, Equatable {
+
+    public static func  == (lhs: TextAreaView, rhs: TextAreaView) -> Bool {
+        lhs.value == rhs.value
+    }
+
+    @Binding var value: String
+    var height: CGFloat = 60
+    var focusAction: ((Bool) -> Void)? = nil
+
+    public init(height: CGFloat = 60, value: Binding<String>, focusAction: ((Bool) -> ())? = nil) {
+        self.height = height
+        self._value = value
+        self.focusAction = focusAction
+    }
+
+    public var body: some View {
+        TextEditor(text: $value).accentColor(Color.blue).multilineTextAlignment(.leading)
+                .font(.system(size: 14))
+                .height(height).cellStyle()
+    }
+}
+
+
 
 public struct SelectItemView: View, Equatable {
     public static func  ==(lhs: SelectItemView, rhs: SelectItemView) -> Bool {
@@ -83,7 +176,6 @@ public struct SelectItemView: View, Equatable {
     }
 
     public var body: some View {
-        ps2("render select", label, value, options)
         return VStack(spacing: 0){
             HStack{
                 ItemImageView(label: self.label)
@@ -117,9 +209,6 @@ public struct SelectItemView: View, Equatable {
     }
 }
 
-
-
-
 public struct DatePickItemView: View {
 
     var label: String
@@ -136,7 +225,6 @@ public struct DatePickItemView: View {
         if(value.wrappedValue != ""){
             self.mydate = MyDateUtil.parseDate(value.wrappedValue)!
         }
-
     }
 
     public var body: some View {
@@ -259,10 +347,8 @@ public struct DatePick2ItemView: View {
             }
         }.padding(.horizontal).mainBg().onChange(of: mydate1) {v in
             self.value1 = MyDateUtil.formatDate(v)
-            ps(self.value1)
         }.onChange(of: mydate2) {v in
             self.value2 = MyDateUtil.formatDate(v)
-            ps(self.value2)
         }
     }
 
@@ -343,13 +429,17 @@ public struct SliderItemView: View, Equatable {
     }
 
     public var body: some View {
-        ps2("render color select", label)
         return VStack{
 
             HStack{
                 ItemImageView(label: self.label)
                 Spacer()
-                Text("\(self.value.toInt())").fontSize(14).hint()
+                if(self.maxValue == 1){
+                    Text("\(String(format: "%.2f", self.value))").fontSize(14).hint()
+                }
+                else{
+                    Text("\(self.value.toInt())").fontSize(14).hint()
+                }
             }.cellStyle().tap{
                 UIApplication.shared.endEditing()
                 self.showSlider.toggle()
@@ -368,6 +458,9 @@ public struct SliderItemView: View, Equatable {
     }
 }
 
+
+
+
 public struct ColorSelectItemView: View, Equatable {
 
     public static func  == (lhs: ColorSelectItemView, rhs: ColorSelectItemView) -> Bool {
@@ -375,6 +468,7 @@ public struct ColorSelectItemView: View, Equatable {
     }
 
     var label: String
+    var hint: String = ""
     @Binding var value: String
     var valueColor: Color = Color.primary
 
@@ -383,8 +477,11 @@ public struct ColorSelectItemView: View, Equatable {
 
     @State var chooseColor: Color = Color.clear
 
-    public init(label: String, value: Binding<String>, valueColor: Color = Color.primary, showPicker: Bool = false, timer: Timer? = nil, chooseColor: Color = .clear) {
+    public init(label: String,hint: String = "", value: Binding<String>, valueColor: Color = Color.primary, showPicker: Bool = false, timer: Timer? = nil, chooseColor: Color = .clear) {
         self.label = label
+        if(hint != ""){
+            self.hint = "(" +  hint + ")"
+        }
         self._value = value
         self.valueColor = valueColor
         self.showPicker = showPicker
@@ -394,6 +491,7 @@ public struct ColorSelectItemView: View, Equatable {
     public var body: some View {
         return HStack{
             ItemImageView(label: self.label)
+            Text(hint).smallHint()
             Spacer()
             Text(self.value).fontSize(14).hint()
             ColorPicker(selection: $chooseColor){
@@ -404,6 +502,8 @@ public struct ColorSelectItemView: View, Equatable {
             UIApplication.shared.endEditing()
         }.onAppear{
             self.chooseColor = parseHexColor(self.value)
+        }.onChange(of: value){v in
+            self.chooseColor = parseHexColor(v)
         }
     }
 }
@@ -494,22 +594,63 @@ public struct SwitchSetItemView : View, Equatable {
     }
 
     var label: String
+    var hint: String = ""
     @Binding var value: Bool
 
-    public init(label: String, value: Binding<Bool>) {
+    public init(label: String, hint: String = "", value: Binding<Bool>) {
         self.label = label
+        if(hint != ""){
+            self.hint = "(" + hint + ")"
+        }
         self._value = value
     }
 
     public var body: some View {
         return HStack{
             ItemImageView(label: label)
+            Text(hint).smallHint()
             Spacer()
             SwitchButton(value: $value)
         }.cellStyle()
 
     }
 }
+
+
+
+public struct SwitchChooseItemView : View, Equatable {
+
+    public static func  == (lhs: SwitchChooseItemView, rhs: SwitchChooseItemView) -> Bool {
+        lhs._value.wrappedValue == rhs._value.wrappedValue
+    }
+
+    var label: String
+    var hint: String = ""
+    @Binding var value: String
+    var options: [SelectDO]
+
+    public init(label: String, hint: String = "", value: Binding<String>, options: [SelectDO]) {
+        self.label = label
+        if(hint != ""){
+            self.hint = "(" + hint + ")"
+        }
+        self._value = value
+        self.options = options
+    }
+
+    public var body: some View {
+        return HStack{
+            ItemImageView(label: label)
+            Text(hint).smallHint()
+            Spacer()
+            SwitchChooseButton(value: $value, options: options)
+        }.padding(.horizontal).padding(.vertical, verticalGap - 2)
+
+    }
+}
+
+
+
 
 
 public struct SwitchActionSetItemView : View, Equatable {
@@ -521,11 +662,13 @@ public struct SwitchActionSetItemView : View, Equatable {
     var label: String
     var value: Bool
     var action: () -> Void
+    var gap: CGFloat
 
-    public init(label: String, value: Bool, action: @escaping () -> ()) {
+    public init(label: String, value: Bool,gap: CGFloat = -1, action: @escaping () -> ()) {
         self.label = label
         self.value = value
         self.action = action
+        self.gap = gap
     }
 
     public var body: some View {
@@ -534,7 +677,8 @@ public struct SwitchActionSetItemView : View, Equatable {
             ItemImageView(label: label)
             Spacer()
             SwitchActionButton(value: value, action: action)
-        }.cellStyle().mainBg()
+        }.padding(.horizontal)
+                .padding(.vertical, gap < 0 ? verticalGap : gap).mainBg()
 
     }
 }
@@ -546,25 +690,33 @@ public struct SwitchActionSetItemView : View, Equatable {
 public struct LinkSetItemView<Destination: View> : View {
     var label: String
     var destination: Destination
+    var vip: Bool
     var disable: Bool = false
     @State var isActive: Bool = false
+    var action: (() -> Void)? = nil
 
-    public init(label: String, destination: Destination, disable: Bool = false) {
+    public init(label: String,vip: Bool = false, destination: Destination, disable: Bool = false, action:  (() -> Void)? = nil) {
         self.label = label
+        self.vip = vip
         self.destination = destination
         self.disable = disable
+        self.action = action
     }
 
     public var body: some View {
 
         HStack{
             ItemImageView(label: label)
+            if(vip){
+                VipLogo()
+            }
             EmptyLinkView(destination: destination, isActive: $isActive)
             BugFillLinkView()
             Spacer()
             Image(systemName: "chevron.forward").font(.system(size: 12))
         }.cellStyle().emptyBg().tap {
             if(disable){
+                action?()
                 return
             }
             self.isActive = true
@@ -574,4 +726,44 @@ public struct LinkSetItemView<Destination: View> : View {
 }
 
 
+public struct ChooseItemView: View {
+    var label: String
+    @Binding var isActive: Bool
 
+    public init(label: String, isActive: Binding<Bool>) {
+        self.label = label
+        self._isActive = isActive
+    }
+
+    public var body: some View {
+
+        HStack{
+            ItemImageView(label: label)
+            Spacer()
+            Image(systemName: "chevron.forward").font(.system(size: 12))
+        }.cellStyle().emptyBg().tap {
+            self.isActive.toggle()
+        }
+
+    }
+}
+
+
+public struct SimpleItemView: View {
+    var label: String
+    var action: () -> Void
+
+    public init(label: String, action: @escaping () -> ()) {
+        self.label = label
+        self.action = action
+    }
+
+    public var body: some View {
+        HStack{
+            ItemImageView(label: label)
+            Spacer()
+        }.cellStyle().emptyBg().tap {
+            self.action()
+        }
+    }
+}

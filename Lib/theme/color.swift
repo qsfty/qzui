@@ -43,6 +43,7 @@ import SwiftUI
 extension Color {
 
     public static let delete = Color("delete")
+    public static let switchValidBg = Color("switchValidBg")
     public static let second = Color("second")
     public static let third = Color("third")
     public static let shadow = Color("shadow")

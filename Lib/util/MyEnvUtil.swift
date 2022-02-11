@@ -50,6 +50,10 @@ public class MyEnvUtil {
         UIPasteboard.general.string = data
     }
 
+    public static func copyWx() {
+        UIPasteboard.general.string = "yongbw2020"
+    }
+
     public static func  getClipboardData() -> String {
         UIPasteboard.general.string ?? ""
     }

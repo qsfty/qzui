@@ -50,14 +50,14 @@ public struct LeadingTextView: View {
 public struct LeadingOpenTextView<Content: View>: View {
 
     var title: String
-    var padding: CGFloat = 5
+    var padding: CGFloat = 10
     var fontSize: CGFloat = 14
     var color: Color = Color.primary
     var bold: Bool = false
     @State var open = false
     var content: Content
 
-    public init(_ title: String,padding: CGFloat = 5, fontSize: CGFloat = 14, color: Color = Color.primary, bold: Bool = false, @ViewBuilder content: () -> Content) {
+    public init(_ title: String,padding: CGFloat = 10, fontSize: CGFloat = 14, color: Color = Color.primary, bold: Bool = false, @ViewBuilder content: () -> Content) {
         self.title = title
         self.padding = padding
         self.fontSize = fontSize
@@ -121,12 +121,16 @@ public struct LeadingTextWithAddView: View {
 public struct LeadingHintTextView: View {
 
     var title: String
+    var hint: String = ""
     var fontSize: CGFloat = 14
     var color: Color = Color.gray
     var bold: Bool = false
 
-    public init(_ title: String, fontSize: CGFloat = 14, color: Color = Color.gray, bold: Bool = false) {
+    public init(_ title: String,hint: String = "", fontSize: CGFloat = 14, color: Color = Color.gray, bold: Bool = false) {
         self.title = title
+        if(hint != ""){
+            self.hint = "(" + hint + ")"
+        }
         self.fontSize = fontSize
         self.color = color
         self.bold = bold
@@ -135,6 +139,7 @@ public struct LeadingHintTextView: View {
     public var body: some View {
         HStack {
             Text(self.title).fontWeight(bold ? .bold : .none).fontSize(fontSize).color(color)
+            Text(self.hint).smallHint()
             Spacer()
         }.padding(.vertical, 5).padding(.horizontal)
     }

@@ -53,3 +53,25 @@ public struct SearchInput: View {
     }
 }
 
+public struct BigSearchInputView: View {
+
+    public var hint: String
+    @Binding var value: String
+    public var action: () -> ()
+
+    public init(hint: String, value: Binding<String>, action: @escaping () -> ()) {
+        self.hint = hint
+        self._value = value
+        self.action = action
+    }
+
+    public var body: some View {
+        ZStack {
+            TextField(hint, text: $value){
+                action()
+            }.multilineTextAlignment(.center)
+                    .fontSize(14).padding().maxWidth().mainBg().cornerRadius(6).padding()
+        }
+    }
+}
+

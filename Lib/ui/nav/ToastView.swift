@@ -38,3 +38,28 @@ public struct ToastView: View {
         }
     }
 }
+
+
+public struct ToastLoading: View {
+
+    public var sheet: Bool = false
+    var loadingMessage: String = "加载中"
+
+    public init(sheet: Bool = false, loadingMessage: String = "") {
+        self.sheet = sheet
+        if(loadingMessage != ""){
+            self.loadingMessage = loadingMessage
+        }
+    }
+
+    public var body: some View {
+        Text(loadingMessage)
+                .fontSize(12)
+                .color(.white)
+                .padding(10)
+                .padding(.horizontal, 20)
+                .background(Color("gray"))
+                .cornerRadius(20)
+                .offset(y: 120).zIndex(10)
+    }
+}
