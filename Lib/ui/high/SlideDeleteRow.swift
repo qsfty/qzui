@@ -46,18 +46,18 @@ public struct SlideDeleteRow<Content:View>: View {
             HStack{
                 Text(getDeleteText()).fontSize(12).color(Color.white)
             }.maxHeight().width(-self.scrollX).background(Color.delete).tap {
-                if(isDelete){
-                    self.onDelete()
-                }
-                else{
-                    if(self.showAlert()){
-                        self.isDelete = true
+                        if(isDelete){
+                            self.onDelete()
+                        }
+                        else{
+                            if(self.showAlert()){
+                                self.isDelete = true
+                            }
+                            else{
+                                self.onDelete()
+                            }
+                        }
                     }
-                    else{
-                        self.onDelete()
-                    }
-                }
-            }
 
             content.zIndex(101).offset(x: scrollX).highPriorityGesture(DragGesture(minimumDistance: 20, coordinateSpace: .local).updating($isDragging) { (value, state, _) in
                         state = true
