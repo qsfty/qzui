@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
 s.name             = 'QzUI'
-s.version          = '1.0.1'
+s.version          = '1.0.2'
 s.summary          = 'SwiftUI Helper'
 
 s.description      = <<-DESC
@@ -18,7 +18,7 @@ DESC
         s.homepage         = 'https://github.com/qsfty/qzui'
 s.license          = { :type => 'MIT', :file => 'LICENSE' }
 s.author           = { 'qsfty' => '1009510944@qq.com' }
-s.source           = { :git => 'https://github.com/qsfty/qzui.git', :tag => s.version.to_s }
+s.source           = { :git => 'git@github.com:qsfty/qzui.git', :tag => s.version.to_s }
 
 s.ios.deployment_target = '14.0'
 
