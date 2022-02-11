@@ -18,6 +18,7 @@ target 'qzui' do
   # Pods for course
 
   pod 'QzUI', :path => '/Users/qiangzi/Work/2022/pro_duty/ios/lib/qzui'
+  pod 'QzLib', :path => '/Users/qiangzi/Work/2022/pro_duty/ios/lib/qzlib'
 
 end
 

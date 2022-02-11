@@ -34,8 +34,8 @@ extension View {
         self.font(.system(size: fontSize))
     }
 
-    public func white() -> some View {
-        self.color(Color.white)
+    public func white(_ bg: Color) -> some View {
+        self.color(Color.white).bg(bg)
     }
 
     public func color(_ color: String) -> some View {
@@ -55,7 +55,7 @@ extension View {
     }
 
     public func bgRed() -> some View {
-        self.overlay(Color.red)
+        self.overlay(Color.red).opacity(0.2)
     }
 
     public func bgBlue() -> some View {
@@ -76,7 +76,11 @@ extension View {
     }
 
     public func third() -> some View {
-        self.color("third")
+        self.color(Color.third)
+    }
+
+    public func placeholder() -> some View {
+        self.color(Color.placeholder)
     }
 
     public func secondary() -> some View{
@@ -177,6 +181,10 @@ extension View {
 
     public func deleteTheme() -> some View {
         self.foregroundColor(Color.white).bg(.delete)
+    }
+
+    public func deleteColor() -> some View {
+        self.foregroundColor(.delete)
     }
 
     public func warn() -> some View {
@@ -331,8 +339,16 @@ extension View {
         self.padding(.bottom, MyUIUtil.getTabbarHeight())
     }
 
+    public func paddingBottomScreen() -> some View {
+        self.padding(.bottom, MyUIUtil.getScreenBottomHeight())
+    }
+
     public func pd(_ value: CGFloat = 15) -> some View {
         self.padding(value)
+    }
+
+    public func pda(_ v : CGFloat = 15, _ h: CGFloat = 15) -> some View {
+        self.pdv(v).pdh(h)
     }
 
     public func pdt(_ value: CGFloat = 15) -> some View {
@@ -352,11 +368,11 @@ extension View {
     }
 
     public func pdl(_ value: CGFloat = 15) -> some View {
-        self.padding(.leading)
+        self.padding(.leading, value)
     }
 
     public func pdr(_ value: CGFloat = 15) -> some View {
-        self.padding(.trailing)
+        self.padding(.trailing, value)
     }
 
     public func listContentPadding() -> some View {
@@ -366,6 +382,11 @@ extension View {
     public func selfScreen() -> some View {
         self.mainBg0().edgesIgnoringSafeArea(.all).navigationBarTitle("").navigationBarTitleDisplayMode(.inline).navigationBarHidden(true).navigationBarBackButtonHidden(true)
     }
+
+    public func selfNav() -> some View {
+        self.navigationBarTitle("").navigationBarTitleDisplayMode(.inline).navigationBarHidden(true).navigationBarBackButtonHidden(true)
+    }
+
 
     public func line1Dialog() -> some View{
         self.dialogWidth().padding(.vertical).dialogBg().cornerRadius(6).shadow(color: Color.gray.opacity(0.2), radius: 10).gapTop(height: 160).zIndex(10)
