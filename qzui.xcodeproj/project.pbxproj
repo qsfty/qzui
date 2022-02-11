@@ -23,13 +23,14 @@
 		12577458187E7DA44FAAAB9C /* BoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1257767AAFE2F13FC39D63F6 /* BoxView.swift */; };
 		1257751656D0FD82F7E9F841 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1257748F6A8EE3744A4FB443 /* HeaderView.swift */; };
 		12577629A6D2816C2105D5E8 /* qzui.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 1257789137200D4A3E93B432 /* qzui.podspec */; };
-		1257769F4E06861AAAE845E7 /* SlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125778D79EBD552AB449C0ED /* SlideView.swift */; };
 		125776DC7A5644CB7F0D632D /* NavigationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12577EEE4930B02A3E5F3BE9 /* NavigationHelper.swift */; };
 		125776E51688F8752A3AD90C /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1257712F2AB84B7B84FC680C /* ColorExtension.swift */; };
 		1257781B6E11EE688080DD6A /* AppVersionApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12577BF316745409B88A63FE /* AppVersionApi.swift */; };
 		125778CE1AAFF662EAC1571A /* HalfSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12577D9F1039DEC9F462E839 /* HalfSheetView.swift */; };
+		1257799575227CE7DEFF688C /* CrashHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12577B369F256F6D75C3F7E0 /* CrashHelper.swift */; };
 		125779FA5FCB76031C912E37 /* MyUIUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1257792DBB42379C9D7858AD /* MyUIUtil.swift */; };
 		12577A609823368B664147AE /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1257774D4A5ACB007DC4062C /* ToastView.swift */; };
+		12577A66A085840A7DEC308C /* CrashReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1257737C89270666B98BF19D /* CrashReporter.swift */; };
 		12577AB7D1C8D4BC35C26A4A /* ColorSchemeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12577A0E5657B77F64990681 /* ColorSchemeModifier.swift */; };
 		12577ACDAF913C152836401D /* ToastDO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125773B0B871A3B43739DAFA /* ToastDO.swift */; };
 		12577AEB31E4B41E2EB7E623 /* ParagraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1257789D7D80BDD1D0CF8400 /* ParagraphView.swift */; };
@@ -56,6 +57,7 @@
 		125770D2FE615BEEEA491BC7 /* GroupForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupForm.swift; sourceTree = "<group>"; };
 		1257712F2AB84B7B84FC680C /* ColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		12577195E262028F7B3D9E7C /* LoadingBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingBarView.swift; sourceTree = "<group>"; };
+		1257737C89270666B98BF19D /* CrashReporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrashReporter.swift; sourceTree = "<group>"; };
 		125773B0B871A3B43739DAFA /* ToastDO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastDO.swift; sourceTree = "<group>"; };
 		125773B8869AE45C5527F40C /* NavigationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationExtension.swift; sourceTree = "<group>"; };
 		1257748C31F4CD24F56E5FFB /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
@@ -72,10 +74,10 @@
 		1257789137200D4A3E93B432 /* qzui.podspec */ = {isa = PBXFileReference; lastKnownFileType = file.podspec; path = qzui.podspec; sourceTree = "<group>"; };
 		1257789D7D80BDD1D0CF8400 /* ParagraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParagraphView.swift; sourceTree = "<group>"; };
 		125778AAD1424D9AC4309845 /* PagerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagerView.swift; sourceTree = "<group>"; };
-		125778D79EBD552AB449C0ED /* SlideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideView.swift; sourceTree = "<group>"; };
 		12577916D5B079A3E5042D68 /* HintView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HintView.swift; sourceTree = "<group>"; };
 		1257792DBB42379C9D7858AD /* MyUIUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyUIUtil.swift; path = util/MyUIUtil.swift; sourceTree = "<group>"; };
 		12577A0E5657B77F64990681 /* ColorSchemeModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSchemeModifier.swift; sourceTree = "<group>"; };
+		12577B369F256F6D75C3F7E0 /* CrashHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrashHelper.swift; sourceTree = "<group>"; };
 		12577B8EFD12D1B02623B287 /* OkButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OkButton.swift; sourceTree = "<group>"; };
 		12577BF316745409B88A63FE /* AppVersionApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppVersionApi.swift; sourceTree = "<group>"; };
 		12577CBB378FCBA87337F2CC /* Input.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
@@ -118,6 +120,15 @@
 				1257767AAFE2F13FC39D63F6 /* BoxView.swift */,
 			);
 			path = box;
+			sourceTree = "<group>";
+		};
+		1257745A9C29C738010E40B2 /* plugins */ = {
+			isa = PBXGroup;
+			children = (
+				12577B369F256F6D75C3F7E0 /* CrashHelper.swift */,
+				1257737C89270666B98BF19D /* CrashReporter.swift */,
+			);
+			path = plugins;
 			sourceTree = "<group>";
 		};
 		125774E61DBC11AC0936705F /* modifier */ = {
@@ -165,7 +176,6 @@
 				12577195E262028F7B3D9E7C /* LoadingBarView.swift */,
 				1257763CC350679BA46BE837 /* NetworkErrorView.swift */,
 				125778AAD1424D9AC4309845 /* PagerView.swift */,
-				125778D79EBD552AB449C0ED /* SlideView.swift */,
 				1257774D4A5ACB007DC4062C /* ToastView.swift */,
 			);
 			path = nav;
@@ -239,6 +249,7 @@
 				125774E61DBC11AC0936705F /* modifier */,
 				12577F5E46B796D67FAFBEEB /* MyEnvUtil.swift */,
 				1257792DBB42379C9D7858AD /* MyUIUtil.swift */,
+				1257745A9C29C738010E40B2 /* plugins */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -436,7 +447,6 @@
 				1257703DC735B92F0BB10798 /* NetworkErrorView.swift in Sources */,
 				125773123838F04FBE23866F /* PagerView.swift in Sources */,
 				1257724595CB728A6CC6CAC3 /* RoundedButton.swift in Sources */,
-				1257769F4E06861AAAE845E7 /* SlideView.swift in Sources */,
 				12577A609823368B664147AE /* ToastView.swift in Sources */,
 				12577ACDAF913C152836401D /* ToastDO.swift in Sources */,
 				12577AB7D1C8D4BC35C26A4A /* ColorSchemeModifier.swift in Sources */,
@@ -444,6 +454,8 @@
 				12577C64A4D9FF7047AA5B26 /* BaseView.swift in Sources */,
 				12577AF52E154965C260D068 /* MyEnvUtil.swift in Sources */,
 				125779FA5FCB76031C912E37 /* MyUIUtil.swift in Sources */,
+				1257799575227CE7DEFF688C /* CrashHelper.swift in Sources */,
+				12577A66A085840A7DEC308C /* CrashReporter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -4,7 +4,7 @@ git add .
 git commit -m "完善"
 git push
 
-git tag 0.0.16
+git tag 1.0.0
 git push --tags
 
 pod trunk push QzUI.podspec --allow-warnings

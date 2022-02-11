@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import QzLib
 
 
 /**
@@ -101,9 +102,61 @@ public struct RadioSelectButton: View {
 
 }
 
+public struct VipLogo: View {
+
+    public var body: some View {
+        Image(systemName: "crown").resizable().fontSize(6).color(Color.white).padding(2).width(14).height(14).background(parseHexColor("#F7D17C"))
+                .cornerRadius(7)
+    }
+
+}
+
+public struct RadioPanelButton: View {
+
+    var label: String
+    var value: String
+    var crown: Bool
+    @Binding var selectValue: String
+
+    public init(label: String, value: String,crown: Bool = false, selectValue: Binding<String>) {
+        self.label = label
+        self.value = value
+        self.crown = crown
+        self._selectValue = selectValue
+    }
+
+    public var body: some View {
+        HStack(spacing: 2){
+            if(crown){
+                VipLogo()
+            }
+            Text(self.label).fontSize(12)
+        }.padding(6).mainBg().cornerRadius(6)
+                .selected2(flag: value == self.selectValue).tap{
+                    self.selectValue = value
+                }
+
+    }
+
+}
+
 extension View {
 
     public func selected(flag: Bool) -> some View{
+        self.border(color: flag ? Color.theme : Color.mainBg, radius: 6, lineWidth: 2).padding(2).overlay(ZStack(alignment: .bottomTrailing){
+            if(flag){
+                Color.clear
+                Text("选").fontSize(10).padding(2).theme().cornerRadius(2)
+                .offset(x: -2, y: -2)
+
+            }
+            else{
+                Color.clear
+            }
+        })
+    }
+
+    public func selected2(flag: Bool) -> some View{
         self.border(color: flag ? Color.theme : Color.mainBg, radius: 6, lineWidth: 2).padding(2)
     }
 }

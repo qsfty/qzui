@@ -33,13 +33,21 @@ public struct AppVersionApi{
             guard let data = resp.value else {
                 return
             }
-            let rst = try! decoder.decode(AppVersionResult.self, from: data.data(using: .utf8)!)
-            guard let rr = rst.results.max(by: { (x, y) -> Bool in
-                !x.toAppVersion().largeThan(other: y.toAppVersion())
-            }) else{
+            guard let mdata = data.data(using: .utf8) else {
                 return
             }
-            cb(rr.toAppVersion())
+            let rst = try? decoder.decode(AppVersionResult.self, from: mdata)
+            if(rst != nil){
+                guard let rr = rst!.results.max(by: { (x, y) -> Bool in
+                    !x.toAppVersion().largeThan(other: y.toAppVersion())
+                }) else{
+                    return
+                }
+                cb(rr.toAppVersion())
+            }
+            else{
+                ps("error2")
+            }
         }
     }
 }
@@ -47,7 +55,7 @@ public struct AppVersionApi{
 public struct AppVersion: Codable {
     var majorVersion: Int = 0
     var minorVersion: Int = 0
-    var bugVersion: Int = 0
+    public var bugVersion: Int = 0
     var build: Int = 0
 
     public init(){
@@ -67,6 +75,10 @@ public struct AppVersion: Codable {
         let v1 = (self.majorVersion * 10000).toFloat() + self.minorVersion.toFloat()  + (self.bugVersion.toDouble() / 10000.0).toFloat()
         let v2 = (other.majorVersion * 10000).toFloat() + other.minorVersion.toFloat() + (other.bugVersion.toDouble() / 10000.0).toFloat()
         return v1 > v2
+    }
+
+    public func importVersionLargeThan(other: AppVersion) -> Bool {
+        return self.majorVersion > other.majorVersion
     }
 
     public func version() -> String {
@@ -89,10 +101,10 @@ public struct AppVersion: Codable {
 
 public struct AppVersionResult: Codable {
 
-    var resultCount: String = ""
-    var results: [AppVersionDetail]
+    public var resultCount: String = ""
+    public var results: [AppVersionDetail]
 
-    struct AppVersionDetail: Codable {
+    public struct AppVersionDetail: Codable {
         var version: String = ""
 
         public func toAppVersion() -> AppVersion {

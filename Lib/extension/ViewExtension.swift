@@ -6,10 +6,17 @@
 import SwiftUI
 import QzLib
 
+
+let PADDING:CGFloat = 15
+
 extension Text{
 
     public func hint() -> some View{
         self.font(.system(size: 12)).third()
+    }
+
+    public func smallHint() -> some View{
+        self.font(.system(size: 10)).third()
     }
 
     public func link() -> some View {
@@ -25,6 +32,10 @@ extension View {
 
     public func fontSize(_ fontSize: CGFloat) -> some View{
         self.font(.system(size: fontSize))
+    }
+
+    public func white() -> some View {
+        self.color(Color.white)
     }
 
     public func color(_ color: String) -> some View {
@@ -44,15 +55,15 @@ extension View {
     }
 
     public func bgRed() -> some View {
-        self.background(Color.red)
+        self.overlay(Color.red)
     }
 
     public func bgBlue() -> some View {
-        self.background(Color.blue)
+        self.overlay(Color.blue)
     }
 
     public func bgYellow() -> some View {
-        self.background(Color.yellow)
+        self.overlay(Color.yellow)
     }
 
 
@@ -168,10 +179,11 @@ extension View {
         self.foregroundColor(Color.white).bg(.delete)
     }
 
-    public func test() -> some View{
-        self.background(makeRandomColor().opacity(0.2))
+    public func warn() -> some View {
+        self.foregroundColor(.delete)
     }
-    public func test2(_ flag: Bool = true) -> some View{
+
+    public func test(flag : Bool = true) -> some View{
         self.overlay(flag ? makeRandomColor().opacity(0.2) : Color.clear)
     }
 
@@ -241,8 +253,6 @@ extension View {
         self.roundedBoxText(size: size, color: color, radius: size / 2.toFloat())
     }
 
-
-
     public func fullScreen() -> some View {
         self.fullWidth()
                 .height(UIScreen.main.bounds.height)
@@ -259,7 +269,6 @@ extension View {
     public func fullHeightWithGap(x: CGFloat) -> some View {
         self.height(MyUIUtil.fullHeight() - x)
     }
-
 
     public func fullWidth() -> some View {
         self.width(MyUIUtil.fullWidth())
@@ -322,41 +331,40 @@ extension View {
         self.padding(.bottom, MyUIUtil.getTabbarHeight())
     }
 
-    public func paddingTop() -> some View {
-        self.padding(.top)
+    public func pd(_ value: CGFloat = 15) -> some View {
+        self.padding(value)
     }
 
-    public func paddingVertical() -> some View {
-        self.padding(.vertical)
+    public func pdt(_ value: CGFloat = 15) -> some View {
+        self.padding(.top, value)
     }
 
-    public func paddingLeading() -> some View {
+    public func pdb(_ value: CGFloat = 15) -> some View {
+        self.padding(.bottom, value)
+    }
+
+    public func pdv(_ value: CGFloat = 15) -> some View {
+        self.padding(.vertical, value)
+    }
+
+    public func pdh(_ value: CGFloat = 15) -> some View {
+        self.padding(.horizontal, value)
+    }
+
+    public func pdl(_ value: CGFloat = 15) -> some View {
         self.padding(.leading)
     }
 
-    public func paddingTrailing() -> some View {
+    public func pdr(_ value: CGFloat = 15) -> some View {
         self.padding(.trailing)
     }
 
-    public func paddingBottom() -> some View {
-        self.padding(.bottom)
+    public func listContentPadding() -> some View {
+        self.padding(.horizontal).padding(.bottom, 10)
     }
 
     public func selfScreen() -> some View {
         self.mainBg0().edgesIgnoringSafeArea(.all).navigationBarTitle("").navigationBarTitleDisplayMode(.inline).navigationBarHidden(true).navigationBarBackButtonHidden(true)
-    }
-
-    public func selfListRow2() -> some View {
-        self.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                .listRowInsets(EdgeInsets())
-                .mainBg0()
-    }
-
-    public func selfListRow() -> some View {
-        self.listRowInsets(EdgeInsets(top: -2, leading:0, bottom: 0, trailing: 0))
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                .listRowBackground(Color.mainBg0)
-                .background(Color.mainBg0)
     }
 
     public func line1Dialog() -> some View{

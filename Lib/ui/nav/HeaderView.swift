@@ -55,6 +55,37 @@ public struct HeaderView: View {
         HStack{
             FixLeftLink(action: backAction)
             Spacer()
+            Text(self.title).bold().opacity(self.showTitle ? 1: 0).animate().tap0{
+                UIApplication.shared.endEditing()
+            }
+            Spacer()
+            FixLeftLink(action: nil)
+        }.height(50).padding(.top, self.isSheet ? 0 : MyUIUtil.getStatusBarHeight()).mainBg().zIndex(10)
+    }
+}
+
+
+/**
+ * 标题栏
+ */
+public struct HeaderCloseView: View {
+
+    var title: String
+    var showTitle: Bool = true
+    var backAction: (() -> Void)? = nil
+    var isSheet: Bool = false
+
+    public init(title: String, showTitle: Bool = true,isSheet: Bool = false, backAction: (() -> ())? = nil) {
+        self.title = title
+        self.showTitle = showTitle
+        self.isSheet = isSheet
+        self.backAction = backAction
+    }
+
+    public var body: some View {
+        HStack{
+            FixLeftCloseLink(action: backAction)
+            Spacer()
             Text(self.title).bold().opacity(self.showTitle ? 1: 0).animate()
             Spacer()
             FixLeftLink(action: nil)
@@ -87,18 +118,25 @@ public struct FullHeaderView: View {
 public struct HeaderWithRightView: View {
 
     var title: String
-    var showTitle: Bool
-    var backButton: Bool? = false
+    var color: Color
     var backAction: (() -> Void)? = nil
 
     var rightText: String
     var rightAction: () -> Void
 
-     public var body: some View {
+    public init(title: String,color: Color = Color.primary,  backAction: (() -> ())?, rightText: String, rightAction: @escaping () -> ()) {
+        self.title = title
+        self.color = color
+        self.backAction = backAction
+        self.rightText = rightText
+        self.rightAction = rightAction
+    }
+
+    public var body: some View {
         HStack{
             FixLeftLink(action: backAction)
             Spacer()
-            Text(self.title).bold().opacity(self.showTitle ? 1: 0).animate()
+            Text(self.title).bold().color(color)
             Spacer()
             FixRightLink(label: rightText, action: rightAction)
         }.height(50).padding(.top, MyUIUtil.getStatusBarHeight()).mainBg().zIndex(10)
@@ -108,8 +146,13 @@ public struct HeaderWithRightView: View {
 
 public struct FixLeftLink: View {
 
-    var action: (() -> Void)? = nil
-     public var body: some View {
+    public var action: (() -> Void)? = nil
+
+    public init(action: (() -> ())? = nil) {
+        self.action = action
+    }
+
+    public var body: some View {
         HStack{
             if(action != nil){
                 Image(systemName: "chevron.backward")
@@ -120,6 +163,23 @@ public struct FixLeftLink: View {
         }
     }
 }
+
+
+public struct FixLeftCloseLink: View {
+
+    var action: (() -> Void)? = nil
+    public var body: some View {
+        HStack{
+            if(action != nil){
+                Image(systemName: "xmark")
+            }
+            Spacer()
+        }.width(50).padding(.leading).emptyBg().tap0 {
+            self.action?()
+        }
+    }
+}
+
 
 
 public struct FixLeftTextLink: View {
@@ -155,9 +215,15 @@ public struct FixLeftText: View {
 
 public struct FixRightLink: View {
 
-    var label: String
-    var action: (() -> Void)?
-     public var body: some View {
+    public var label: String
+    public var action: (() -> Void)?
+
+    public init(label: String, action: (() -> ())? = nil) {
+        self.label = label
+        self.action = action
+    }
+
+    public var body: some View {
         HStack{
             Spacer(minLength: 0)
             Text(label).fontSize(16).themeColor().padding(.vertical).tap0{

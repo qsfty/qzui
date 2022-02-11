@@ -9,7 +9,6 @@ public struct BoxView<Content>: View where Content: View{
     public init(content: () -> Content){
         self.content = content()
     }
-
     public var body: some View {
 
         HStack{

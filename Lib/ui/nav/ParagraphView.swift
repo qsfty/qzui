@@ -24,6 +24,10 @@ public struct ParagraphView: View {
         ParagraphView(content, style: .compress)
     }
 
+    public static func step(_ content: String, color: Color = .third) -> ParagraphView {
+        ParagraphView(content, style: .none, fontSize: 12, color: color)
+    }
+
     public static func  large(_ content: String) -> ParagraphView {
         ParagraphView(content, style: .large)
     }
@@ -37,6 +41,7 @@ public struct ParagraphView: View {
 }
 
 public enum LineSize: Int {
+    case none = 1
     case compress = 10
     case base = 16
     case large = 20
